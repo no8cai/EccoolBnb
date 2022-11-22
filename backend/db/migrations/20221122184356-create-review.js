@@ -7,18 +7,18 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Bookings', {
+    await queryInterface.createTable('Reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      startDate: {
-        type: Sequelize.DATE
+      review: {
+        type: Sequelize.STRING
       },
-      endDate: {
-        type: Sequelize.DATE
+      stars: {
+        type: Sequelize.INTEGER
       },
       spotId: {
         type: Sequelize.INTEGER
@@ -37,7 +37,7 @@ module.exports = {
     },options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Bookings";
+    options.tableName = "Reviews";
     await queryInterface.dropTable(options,options);
   }
 };

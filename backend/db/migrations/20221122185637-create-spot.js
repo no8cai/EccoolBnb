@@ -7,23 +7,41 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Bookings', {
+    await queryInterface.createTable('Spots', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      startDate: {
-        type: Sequelize.DATE
+      address: {
+        type: Sequelize.STRING
       },
-      endDate: {
-        type: Sequelize.DATE
+      city: {
+        type: Sequelize.STRING
       },
-      spotId: {
-        type: Sequelize.INTEGER
+      state: {
+        type: Sequelize.STRING
       },
-      userId: {
+      country: {
+        type: Sequelize.STRING
+      },
+      lat: {
+        type: Sequelize.DECIMAL
+      },
+      lng: {
+        type: Sequelize.DECIMAL
+      },
+      name: {
+        type: Sequelize.STRING
+      },
+      description: {
+        type: Sequelize.STRING
+      },
+      price: {
+        type: Sequelize.DECIMAL
+      },
+      owenerId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -37,7 +55,7 @@ module.exports = {
     },options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Bookings";
+    options.tableName = "Spots";
     await queryInterface.dropTable(options,options);
   }
 };
