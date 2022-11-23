@@ -16,10 +16,32 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Booking.init({
-    startDate: DataTypes.DATE,
-    endDate: DataTypes.DATE,
-    spotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    startDate: { 
+      type:DataTypes.DATE,
+      validate:{
+        isDate: true,
+        isGreater(value){
+          if(Date.parse(value)<Date.now()){
+            throw new Error();
+          }
+        }
+      }
+    },
+    endDate: {
+      type:DataTypes.DATE,
+      validate:{
+        isDate: true,
+        isAfter: this.startDate,
+      }
+    },
+    spotId: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+    },
+    userId: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+    }
   }, {
     sequelize,
     modelName: 'Booking',
