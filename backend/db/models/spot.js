@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     price: DataTypes.DECIMAL,
-    owenerId: DataTypes.INTEGER
+    ownerId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Spot',

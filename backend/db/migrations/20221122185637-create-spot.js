@@ -41,7 +41,7 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL
       },
-      owenerId: {
+      ownerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'Users' },
