@@ -21,16 +21,24 @@ module.exports = {
         type: Sequelize.DATE
       },
       spotId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Spots' },
+        onDelete: 'CASCADE'
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Users' },
+        onDelete: 'CASCADE'
       },
       createdAt: {
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: false,
         type: Sequelize.DATE
       }
