@@ -22,9 +22,22 @@ const validateLogin = [
 // Log in
 router.post('/',validateLogin,async (req, res, next) => {
       const { credential, password } = req.body;
-  
+      
+    //   if(!credential||!password){
+    //     res.statusCode=400
+    //     return res.json({
+    //         "message": "Validation error",
+    //         "statusCode": 400,
+    //         "errors": {
+    //           "credential": "Email or username is required",
+    //           "password": "Password is required"
+    //         }
+    //     })
+    //   }
+
       const user = await User.login({ credential, password });
-  
+      
+
       if (!user) {
         const err = new Error('Login failed');
         err.status = 401;
@@ -34,10 +47,14 @@ router.post('/',validateLogin,async (req, res, next) => {
       }
   
       await setTokenCookie(res, user);
-  
-      return res.json({
-        user: user
-      });
+      
+      tempuser=user.toJSON();
+      tempuser.token=""
+
+      delete tempuser.createdAt
+      delete tempuser.updatedAt
+      return res.json(tempuser
+      );
     }
   );
 
