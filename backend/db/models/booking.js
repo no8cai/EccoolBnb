@@ -11,31 +11,35 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Booking.init({
-    startDate: { 
+    startDate: {
       type:DataTypes.DATE,
-      // validate:{
-      //   isDate: true,
-      //   // isGreater(value){
-      //   //   if(Date.parse(value)<Date.now()){
-      //   //     throw new Error();
-      //   //   }
-      //   // }
-      // }
+      validate:{
+        isDate: true,
+        isGreater(value){
+          if(Date.parse(value)<Date.now()){
+            throw new Error('date can not be in the past');
+          }
+        }
+      }
     },
     endDate: {
       type:DataTypes.DATE,
-      // validate:{
-      //   isDate: true,
-      //   isAfter: this.startDate,
-      // }
+      validate:{
+      isDate: true,
+      isGreater(value){
+        if(Date.parse(value)<Date.parse(this.startDate)){
+          throw new Error('end date should after start date');
+        }
+      }
+      }
     },
     spotId: {
       type:DataTypes.INTEGER,
-      // allowNull: false,
+      allowNull: false
     },
     userId: {
       type:DataTypes.INTEGER,
-      // allowNull: false,
+      allowNull: false
     }
   }, {
     sequelize,
