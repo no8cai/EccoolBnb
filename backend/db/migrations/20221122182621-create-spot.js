@@ -14,39 +14,48 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      address: {
-        type: Sequelize.STRING,
-        unique:true
-      },
-      city: {
-        type: Sequelize.STRING
-      },
-      state: {
-        type: Sequelize.STRING
-      },
-      country: {
-        type: Sequelize.STRING
-      },
-      lat: {
-        type: Sequelize.DECIMAL
-      },
-      lng: {
-        type: Sequelize.DECIMAL
-      },
-      name: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      price: {
-        type: Sequelize.DECIMAL
-      },
       ownerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'Users'},
         onDelete: 'CASCADE'
+      },
+      address: {
+        type: Sequelize.STRING,
+        unique:true,
+        allowNull: false
+      },
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      state: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      country: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      lat: {
+        type: Sequelize.DECIMAL,
+        allowNull: false
+      },
+      lng: {
+        type: Sequelize.DECIMAL,
+        allowNull: false
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      price: {
+        type: Sequelize.DECIMAL,
+        allowNull: false
       },
       createdAt: {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

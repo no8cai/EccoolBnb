@@ -44,14 +44,3 @@ module.exports = router;
 //     ],
 //   });
 //   let Spots=await Spot.findAll()
-
-//   for(let onespot of Spots){
-//      let temp=await SpotImage.findOne({
-//         where: {
-//             spotId: onespot.id
-//         }
-//     })
-//     console.log("url: "+temp.url)
-//     console.log("output :"+onespot.id)
-//     onespot.previewImage="bombombombom"
-//   }

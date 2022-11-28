@@ -1,15 +1,28 @@
 // backend/routes/api/session.js
 const express = require('express')
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser, requireAuth} = require('../../utils/auth');
 const { Review,ReviewImage,User,Spot,SpotImage } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
+const Sequelize = require('sequelize');
 
 
-router.get('/current',restoreUser,async (req, res) => {
+const validateReviews = [
+    check('review')
+      .exists({ checkFalsy: true })
+      .withMessage("Review text is required"),
+    check('stars')
+      .exists({ checkFalsy: true })
+      .isInt({min:1,max:5})
+      .withMessage("Stars must be an integer from 1 to 5"),
+    handleValidationErrors
+  ];
+
+
+router.get('/current',restoreUser,requireAuth,async (req, res) => {
   const { user } = req;
 
   let allReviews=await Review.findAll({
@@ -36,7 +49,7 @@ router.get('/current',restoreUser,async (req, res) => {
             review.Spot.previewImage=image.url
         }
     })
-
+    if(!review.Spot.SpotImages.length){ review.Spot.previewImage=""}
     delete review.Spot.SpotImages
 
 })
@@ -48,38 +61,88 @@ router.get('/current',restoreUser,async (req, res) => {
 
 
 
-router.post('/:reviewId/images',restoreUser,async (req, res) => {
-    const { user } = req;
-    const { url,preview }=req.body
+router.post('/:reviewId/images',restoreUser,requireAuth,async (req, res, next) => {
+    
+    const { url }=req.body
 
     const review=await Review.findByPk(req.params.reviewId)
+    if(!review){
+        const err = new Error("Spot couldn't be found");
+        err.title = "HTTP error";
+        err.errors = {"spotId":"Spot couldn't be found"};
+        err.status = 404;
+        return next(err);
+    }
+    if(review.userId!==req.user.id){
+        const err = new Error("Forbidden");
+        err.title = "Authorization error";
+        err.errors = {"Authorization":"Review must belong to the current user"};
+        err.status = 403;
+        return next(err);
+    }
+    
+    const allimages=await ReviewImage.findAll({
+        where:{reviewId:req.params.reviewId}
+    })
+    
+    if(allimages.length>10){
+        const err = new Error("Maximum number of images for this resource was reached");
+        err.title = "Authorization error";
+        err.errors = {"Authorization":"Maximum number of images for this resource was reached"};
+        err.status = 403;
+        return next(err);
+    }
+
     const newReviewImage=await review.createReviewImage({
         url,
-        preview
     })
 
     res.json(newReviewImage)
   }
 );
 
-router.put('/:reviewId',async (req, res) => {
+router.put('/:reviewId',restoreUser,requireAuth,validateReviews,async (req, res,next) => {
 
   const { review,stars}=req.body
 
   let oneReview=await Review.findByPk(req.params.reviewId);
-
-  if(review){oneReview.review=review}
-  if(stars){oneReview.stars=stars}
+  
+  if(!oneReview){
+    const err = new Error("Spot couldn't be found");
+    err.title = "HTTP error";
+    err.errors = {"spotId":"Spot couldn't be found"};
+    err.status = 404;
+    return next(err);
+}
+    oneReview.update({
+       review,
+       stars
+     })
 
   res.json(oneReview)
 
 });
 
 
-router.delete('/:reviewId',restoreUser, async (req, res) => {
-  const { user } = req;
+router.delete('/:reviewId',restoreUser,requireAuth,async (req, res,next) => {
+  
 
   const oneReview=await Review.findByPk(req.params.reviewId);
+
+  if(!oneReview){
+    const err = new Error("Review couldn't be found");
+    err.title = "HTTP error";
+    err.errors = {"reviewId":"Review couldn't be found"};
+    err.status = 404;
+    return next(err);
+  } 
+  if(oneReview.userId!==req.user.id){
+    const err = new Error("Forbidden");
+    err.title = "Authorization error";
+    err.errors = {"Authorization":"Review must belong to the current user"};
+    err.status = 403;
+    return next(err);
+}
 
   oneReview.destroy(),
 

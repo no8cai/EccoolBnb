@@ -14,6 +14,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      spotId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Spots' },
+        onDelete: 'CASCADE'
+      },
       url: {
         type: Sequelize.STRING,
         unique:true
@@ -21,12 +27,6 @@ module.exports = {
       preview: {
         type: Sequelize.BOOLEAN,
         defaultValue:true
-      },
-      spotId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'Spots' },
-        onDelete: 'CASCADE'
       },
       createdAt: {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

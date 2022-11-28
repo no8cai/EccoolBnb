@@ -14,12 +14,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      startDate: {
-        type: Sequelize.DATE
-      },
-      endDate: {
-        type: Sequelize.DATE
-      },
       spotId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -31,6 +25,12 @@ module.exports = {
         allowNull: false,
         references: { model: 'Users' },
         onDelete: 'CASCADE'
+      },
+      startDate: {
+        type: Sequelize.DATE
+      },
+      endDate: {
+        type: Sequelize.DATE
       },
       createdAt: {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

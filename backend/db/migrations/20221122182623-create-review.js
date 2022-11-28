@@ -14,12 +14,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      review: {
-        type: Sequelize.STRING
-      },
-      stars: {
-        type: Sequelize.INTEGER
-      },
       spotId: {
         type: Sequelize.INTEGER,
         references: { model: 'Spots' },
@@ -29,6 +23,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Users' },
         onDelete: 'CASCADE'
+      },
+      review: {
+        type: Sequelize.STRING
+      },
+      stars: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

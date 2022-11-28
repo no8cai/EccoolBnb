@@ -14,15 +14,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      url: {
-        type: Sequelize.STRING,
-        unique:true
-      },
       reviewId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: 'Reviews' },
         onDelete: 'CASCADE'
+      },
+      url: {
+        type: Sequelize.STRING,
+        unique:true
       },
       createdAt: {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

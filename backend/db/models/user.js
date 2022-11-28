@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject() {
       const { firstName, lastName, id, username, email } = this; // context will be the User instance
-      return { firstName, lastName, id, username, email };
+      return { id, firstName, lastName, email, username };
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -101,7 +101,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     scopes: {
       currentUser: {
-        attributes: { exclude: ["hashedPassword"] }
+        attributes: { exclude: ["hashedPassword","createdAt","updatedAt"] }
       },
       loginUser: {
         attributes: {}
