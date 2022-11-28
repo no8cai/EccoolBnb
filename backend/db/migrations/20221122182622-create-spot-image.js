@@ -22,11 +22,13 @@ module.exports = {
       },
       url: {
         type: Sequelize.STRING,
-        unique:true
+        unique:true,
+        allowNull: false
       },
       preview: {
         type: Sequelize.BOOLEAN,
-        defaultValue:true
+        defaultValue:true,
+        allowNull: false
       },
       createdAt: {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

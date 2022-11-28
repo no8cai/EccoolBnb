@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Booking.init({
     startDate: {
-      type:DataTypes.DATE,
+      type:DataTypes.DATEONLY,
       validate:{
         isDate: true,
-        isGreater(value){
+        isBefore(value){
           if(Date.parse(value)<Date.now()){
             throw new Error('date can not be in the past');
           }
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     endDate: {
-      type:DataTypes.DATE,
+      type:DataTypes.DATEONLY,
       validate:{
       isDate: true,
       isGreater(value){

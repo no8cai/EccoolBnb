@@ -1,25 +1,27 @@
-// backend/routes/api/session.js
+// backend/routes/api/reviews.js
 const express = require('express')
 const { setTokenCookie, restoreUser, requireAuth} = require('../../utils/auth');
 const { Review,ReviewImage,User,Spot,SpotImage } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { validateReviews } = require('../../utils/datavalidations');
+
 
 const router = express.Router();
 const Sequelize = require('sequelize');
 
 
-const validateReviews = [
-    check('review')
-      .exists({ checkFalsy: true })
-      .withMessage("Review text is required"),
-    check('stars')
-      .exists({ checkFalsy: true })
-      .isInt({min:1,max:5})
-      .withMessage("Stars must be an integer from 1 to 5"),
-    handleValidationErrors
-  ];
+// const validateReviews = [
+//     check('review')
+//       .exists({ checkFalsy: true })
+//       .withMessage("Review text is required"),
+//     check('stars')
+//       .exists({ checkFalsy: true })
+//       .isInt({min:1,max:5})
+//       .withMessage("Stars must be an integer from 1 to 5"),
+//     handleValidationErrors
+//   ];
 
 
 router.get('/current',restoreUser,requireAuth,async (req, res) => {
@@ -67,9 +69,9 @@ router.post('/:reviewId/images',restoreUser,requireAuth,async (req, res, next) =
 
     const review=await Review.findByPk(req.params.reviewId)
     if(!review){
-        const err = new Error("Spot couldn't be found");
+        const err = new Error("Review couldn't be found");
         err.title = "HTTP error";
-        err.errors = {"spotId":"Spot couldn't be found"};
+        err.errors = {"reviewId":"Review couldn't be found"};
         err.status = 404;
         return next(err);
     }
@@ -108,9 +110,9 @@ router.put('/:reviewId',restoreUser,requireAuth,validateReviews,async (req, res,
   let oneReview=await Review.findByPk(req.params.reviewId);
   
   if(!oneReview){
-    const err = new Error("Spot couldn't be found");
+    const err = new Error("Review couldn't be found");
     err.title = "HTTP error";
-    err.errors = {"spotId":"Spot couldn't be found"};
+    err.errors = {"reviewId":"Review couldn't be found"};
     err.status = 404;
     return next(err);
 }

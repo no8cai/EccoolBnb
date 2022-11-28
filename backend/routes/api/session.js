@@ -5,21 +5,11 @@ const { User } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { validateLogin } = require('../../utils/datavalidations');
 
 const router = express.Router();
 
-const validateLogin = [
-    check('credential')
-      .exists({ checkFalsy: true })
-      .notEmpty()
-      .withMessage("Email or username is required"),
-    check('password')
-      .exists({ checkFalsy: true })
-      .withMessage("Password is required"),
-    handleValidationErrors
-  ];
-
-// Log in
+//Logs in a current user with valid credentials and returns the current user's information.
 router.post('/',validateLogin,async (req, res, next) => {
       const { credential, password } = req.body;
       const { token } = req.cookies;

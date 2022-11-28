@@ -1,114 +1,18 @@
-// backend/routes/api/session.js
+// backend/routes/api/spots.js
 const express = require('express')
-const { setTokenCookie, restoreUser, requireAuth} = require('../../utils/auth');
+const { restoreUser, requireAuth} = require('../../utils/auth');
 const { User,Spot,SpotImage,Review,Booking,ReviewImage,sequelize } = require('../../db/models');
 const { Op } = require("sequelize");
-const { crossOriginResourcePolicy } = require('helmet');
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+// const { check } = require('express-validator');
+// const { handleValidationErrors } = require('../../utils/validation');
 const { validationResult } = require('express-validator');
-
+const { validateSpot,validateReviews,validateBooking,validateQuery} = require('../../utils/datavalidations');
 
 const router = express.Router();
 
-
-
-const validateSpot = [
-    check('address')
-      .exists({ checkFalsy: true })
-      .withMessage("Street address is required"),
-    check('city')
-      .exists({ checkFalsy: true })
-      .withMessage("City is required"),
-    check('state')
-      .exists({ checkFalsy: true })
-      .withMessage("State is required"),
-    check('country')
-      .exists({ checkFalsy: true })
-      .withMessage("Country is required"),
-    check('lat')
-      .exists({ checkFalsy: true })
-      .isDecimal()
-      .withMessage("Latitude is not valid"),
-    check('lng')
-      .exists({ checkFalsy: true })
-      .isDecimal()
-      .withMessage("Longitude is not valid"),
-    check('name')
-      .exists({ checkFalsy: true })
-      .isLength({ max: 49 })
-      .withMessage("Name must be less than 50 characters"),
-    check('description')
-      .exists({ checkFalsy: true })
-      .withMessage("Description is required"),
-    check('price')
-      .exists({ checkFalsy: true })
-      .withMessage("Price per day is required"),
-    handleValidationErrors
-  ];
-
-const validateReviews = [
-    check('review')
-      .exists({ checkFalsy: true })
-      .withMessage("Review text is required"),
-    check('stars')
-      .exists({ checkFalsy: true })
-      .isInt({min:1,max:5})
-      .withMessage("Stars must be an integer from 1 to 5"),
-    handleValidationErrors
-  ];
-
-const validateBooking = [
-    check('startDate')
-      .exists({ checkFalsy: true })
-      .isDate()
-      .withMessage("valid startDate is required"),
-    check('endDate')
-      .exists({ checkFalsy: true })
-      .isDate()
-      .withMessage("valid endDate is required"),
-    handleValidationErrors
-  ];
-
-const validateQuery = [
-    check('page')
-      .optional()
-      .isInt({min:1,max:10})
-      .withMessage("Page must be greater than or equal to 1"),
-    check('size')
-      .optional()
-      .isInt({min:1,max:20})
-      .withMessage("Size must be greater than or equal to 1"),
-    check('minLat')
-      .optional()
-      .isDecimal()
-      .withMessage("Minimum latitude is invalid"),
-    check('maxLat')
-      .optional()
-      .isDecimal()
-      .withMessage("Maximum latitude is invalid"),
-    check('minLng')
-      .optional()
-      .isDecimal()
-      .withMessage("Minimum longitude is invalid"),
-    check('maxLng')
-      .optional()
-      .isDecimal()
-      .withMessage("Maximum longitude is invalid"),
-    check('minPrice')
-      .optional()
-      .isFloat({min:0})
-      .withMessage("Maximum price must be greater than or equal to 0"),
-    check('minPrice')
-      .optional()
-      .isFloat({min:0})
-      .withMessage("Minimum price must be greater than or equal to 0"),
-    handleValidationErrors
-  ];
-
-
+//Returns all the spots filtered by query parameters.
 router.get('/',validateQuery,async (req, res,next) => {
-
+//inport query parameters
 let { page, size,maxLat,minLat,maxLng,minLng,maxPrice,minPrice } = req.query;
 
 page = parseInt(page);
@@ -120,7 +24,7 @@ minLng = parseFloat(minLng);
 maxPrice = parseFloat(maxPrice);
 minPrice = parseFloat(minPrice);
 
-
+//setup query parameters
 let pagination = {}
 if(!page) page = 1
 if(!size) size = 20
@@ -139,8 +43,7 @@ if(maxLng&&minLng){where.lat={[Op.between]:[minLng,maxLng]}}
 if(maxPrice&&(!minPrice)){where.lat={[Op.lte]:maxPrice}}
 if((!maxPrice)&&minPrice){where.lat={[Op.gte]:minPrice}}
 if(maxPrice&&minPrice){where.lat={[Op.between]:[minPrice,maxPrice]}}
-
-console.log("where: "+where.lat)
+//query search
 let allSpots=await Spot.findAll({
         include: [
         { model:Review },
@@ -149,12 +52,12 @@ let allSpots=await Spot.findAll({
         where,
         ...pagination
 });
-
+//convert result to Json for modification
 let Spots=[];
 allSpots.forEach(spot=>{
     Spots.push(spot.toJSON())
 })
-
+//loop through each element to setup avgRating and  preview image
 Spots.forEach(spot=>{
 
     let result=0;
@@ -170,17 +73,17 @@ Spots.forEach(spot=>{
         }
     })
     if(!spot.SpotImages.length){ spot.previewImage=""}
+    //remove non-used elements
     delete spot.Reviews
     delete spot.SpotImages
 
 })
+  //adding page and size to the return object
   let result={Spots}
   result.page=page
   result.size=size
 
-  
   res.json(result);
-
 });
 
 
@@ -358,7 +261,7 @@ router.put('/:spotId',restoreUser,requireAuth,validateSpot,async (req, res, next
         price
       })
 
-    res.json(oneSpot)
+    res.json(currentSpot)
 
 });
 

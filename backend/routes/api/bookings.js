@@ -1,26 +1,28 @@
-// backend/routes/api/session.js
+// backend/routes/api/bookings.js
 const express = require('express')
-const { setTokenCookie, restoreUser,requireAuth, } = require('../../utils/auth');
+const { restoreUser,requireAuth, } = require('../../utils/auth');
 const { Booking,Spot,Review,ReviewImage,SpotImage,User } = require('../../db/models');
 
 const { Op } = require("sequelize");
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+// const { check } = require('express-validator');
+// const { handleValidationErrors } = require('../../utils/validation');
+const { validateBooking } = require('../../utils/datavalidations');
+
 
 const router = express.Router();
 
 
-const validateBooking = [
-    check('startDate')
-      .exists({ checkFalsy: true })
-      .isDate()
-      .withMessage("valid startDate is required"),
-    check('endDate')
-      .exists({ checkFalsy: true })
-      .isDate()
-      .withMessage("valid endDate is required"),
-    handleValidationErrors
-  ];
+// const validateBooking = [
+//     check('startDate')
+//       .exists({ checkFalsy: true })
+//       .isDate()
+//       .withMessage("valid startDate is required"),
+//     check('endDate')
+//       .exists({ checkFalsy: true })
+//       .isDate()
+//       .withMessage("valid endDate is required"),
+//     handleValidationErrors
+//   ];
 
 router.get('/current',restoreUser,requireAuth,async (req, res) => {
     

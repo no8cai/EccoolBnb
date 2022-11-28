@@ -1,6 +1,6 @@
-// backend/routes/api/session.js
+// backend/routes/api/reviewimages.js
 const express = require('express')
-const { setTokenCookie, restoreUser,requireAuth } = require('../../utils/auth');
+const { restoreUser,requireAuth } = require('../../utils/auth');
 const { Spot, ReviewImage,Review } = require('../../db/models');
 
 const { check } = require('express-validator');

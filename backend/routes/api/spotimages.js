@@ -1,10 +1,10 @@
-// backend/routes/api/session.js
+// backend/routes/api/spotimages.js
 const express = require('express')
 const { setTokenCookie, restoreUser,requireAuth } = require('../../utils/auth');
 const { Spot, SpotImage } = require('../../db/models');
 
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+// const { check } = require('express-validator');
+// const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
