@@ -145,11 +145,10 @@ const validateQuery = [
     check('url')
       .exists({ checkFalsy: true })
       .isURL()
-      .withMessage("valid startDate is required"),
+      .withMessage("valid and unique url is required"),
     check('preview')
-      .exists({ checkFalsy: true })
       .isBoolean()
-      .withMessage("valid endDate is required"),
+      .withMessage("valid preview type is required"),
     handleValidationErrors
   ];
 
