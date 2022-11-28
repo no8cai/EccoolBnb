@@ -2,6 +2,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('./validation');
 const { validationResult } = require('express-validator');
 
+//validation of input data for signup
 const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
@@ -28,6 +29,7 @@ const validateSignup = [
     handleValidationErrors
   ];
 
+//validation of input data for login
   const validateLogin = [
     check('credential')
       .exists({ checkFalsy: true })
@@ -39,7 +41,7 @@ const validateSignup = [
     handleValidationErrors
   ];
 
-
+//validation of input data for Spot
   const validateSpot = [
     check('address')
       .exists({ checkFalsy: true })
@@ -76,6 +78,7 @@ const validateSignup = [
     handleValidationErrors
   ];
 
+//validation of input data for reviews
 const validateReviews = [
     check('review')
       .exists({ checkFalsy: true })
@@ -87,6 +90,7 @@ const validateReviews = [
     handleValidationErrors
   ];
 
+//validation of input data for booking
 const validateBooking = [
     check('startDate')
       .exists({ checkFalsy: true })
@@ -99,6 +103,7 @@ const validateBooking = [
     handleValidationErrors
   ];
 
+//validation of input data for pagnition and filtering query
 const validateQuery = [
     check('page')
       .optional()
@@ -135,6 +140,28 @@ const validateQuery = [
     handleValidationErrors
   ];
 
+  //validation of input data for spot image
+  const validateSpotimage = [
+    check('url')
+      .exists({ checkFalsy: true })
+      .isURL()
+      .withMessage("valid startDate is required"),
+    check('preview')
+      .exists({ checkFalsy: true })
+      .isBoolean()
+      .withMessage("valid endDate is required"),
+    handleValidationErrors
+  ];
+
+  //validation of input data for review image
+  const validateReviewimage = [
+    check('url')
+      .exists({ checkFalsy: true })
+      .isURL()
+      .withMessage("valid and unique url is required"),
+    handleValidationErrors
+  ];
+
   module.exports = {
-    validateSignup,validateLogin,validateSpot,validateReviews,validateBooking,validateQuery
+    validateSignup,validateLogin,validateSpot,validateReviews,validateBooking,validateQuery,validateSpotimage,validateReviewimage
   };

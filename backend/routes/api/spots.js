@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 // const { check } = require('express-validator');
 // const { handleValidationErrors } = require('../../utils/validation');
 const { validationResult } = require('express-validator');
-const { validateSpot,validateReviews,validateBooking,validateQuery} = require('../../utils/datavalidations');
+const { validateSpot,validateReviews,validateBooking,validateQuery,validateSpotimage} = require('../../utils/datavalidations');
 
 const router = express.Router();
 
@@ -289,7 +289,7 @@ router.post('/',restoreUser,requireAuth,validateSpot,async (req, res) => {
   }
 );
 
-router.post('/:spotId/images',restoreUser,requireAuth,async (req, res, next) => {
+router.post('/:spotId/images',restoreUser,requireAuth,validateSpotimage,async (req, res, next) => {
 
     let currentSpot=await Spot.findByPk(req.params.spotId)
 
