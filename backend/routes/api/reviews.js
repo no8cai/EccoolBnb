@@ -85,8 +85,13 @@ router.post('/:reviewId/images',restoreUser,requireAuth,validateReviewimage,asyn
     const newReviewImage=await review.createReviewImage({
         url,
     })
+    
+    let tempReviewImage=newReviewImage.toJSON()
 
-    res.json(newReviewImage)
+    delete tempReviewImage.createdAt
+    delete tempReviewImage.updatedAt
+    delete tempReviewImage.reviewId
+    res.json(tempReviewImage)
   }
 );
 

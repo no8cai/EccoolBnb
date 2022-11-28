@@ -9,15 +9,19 @@ const { validateSignup } = require('../../utils/datavalidations');
 const router = express.Router();
 
 // Sign up
+// Creates a new user, logs them in as the current user, and returns the current user's information.
 router.post(
     '/',validateSignup,
     async (req, res, next) => {
       
       const { firstName,lastName,email, password, username } = req.body;
       const { token } = req.cookies;
-
+      
+      //query from existing users
       const tempUser1=await User.findOne({where:{email}})
       const tempUser2=await User.findOne({where:{username}})
+      //Error response: User already exists with the specified email
+      //Error response: User already exists with the specified username
       if(tempUser1){
         const err = new Error("User already exists");
         err.title = "Validation error";
@@ -31,9 +35,9 @@ router.post(
         err.errors = {"username":"User with that username already exists"};
         err.status = 403;
         next(err);
-
       }
       else{
+    // sign up succuessful if pass the inpections. 
       const user = await User.signup({ firstName,lastName,email, username, password });
       
       await setTokenCookie(res, user);

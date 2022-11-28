@@ -86,10 +86,10 @@ Spots.forEach(spot=>{
   res.json(result);
 });
 
-
+//Returns all the spots owned (created) by the current user.
 router.get('/current',restoreUser,requireAuth,async (req, res) => {
     const { user } = req;
-
+//query for current user
     let allSpots=await Spot.findAll({
         include: [
         { model:Review },
@@ -98,12 +98,12 @@ router.get('/current',restoreUser,requireAuth,async (req, res) => {
         ],
         where:{ownerId:user.id}
     });
-
+//change query result into object
     let Spots=[];
     allSpots.forEach(spot=>{
     Spots.push(spot.toJSON())
     })
-
+//loop through result and add elements to object spot
     Spots.forEach(spot=>{
 
     let result=0;
@@ -117,9 +117,9 @@ router.get('/current',restoreUser,requireAuth,async (req, res) => {
             spot.previewImage=image.url
         }
     })
-    
+//assigne a value to previewImage if there is no info
     if(!spot.SpotImages.length){ spot.previewImage=""}
-    
+//delete unused items from object    
     delete spot.Reviews
     delete spot.SpotImages
     delete spot.User
@@ -129,7 +129,7 @@ router.get('/current',restoreUser,requireAuth,async (req, res) => {
   }
 );
 
-
+//
 router.get('/:spotId/reviews',async (req, res,next) => {
 
     
@@ -316,8 +316,14 @@ router.post('/:spotId/images',restoreUser,requireAuth,validateSpotimage,async (r
         preview
     })
     
-    res.statusCode=201
-    res.json(newSpotImage)
+    let tempSpotImage=newSpotImage.toJSON()
+
+    delete tempSpotImage.createdAt
+    delete tempSpotImage.updatedAt
+    delete tempSpotImage.spotId
+
+    // res.statusCode=201
+    res.json(tempSpotImage)
   }
 );
 

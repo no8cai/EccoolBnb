@@ -44,6 +44,7 @@ router.delete('/',(_req, res) => {
   );
 
 // Restore session user
+// Returns the information about the current user that is logged in.
 router.get('/',restoreUser,requireAuth,(req, res) => {
       const { user } = req;
       if (user) {
