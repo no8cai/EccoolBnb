@@ -191,7 +191,7 @@ router.get('/:spotId/bookings',restoreUser,requireAuth,async (req, res,next) => 
 
 });
 
-
+//Get details of a Spot from an id
 router.get('/:spotId',async (req,res,next) => {
 
     let tempSpot=await Spot.findByPk(req.params.spotId,{

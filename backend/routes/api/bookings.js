@@ -11,19 +11,6 @@ const { validateBooking } = require('../../utils/datavalidations');
 
 const router = express.Router();
 
-
-// const validateBooking = [
-//     check('startDate')
-//       .exists({ checkFalsy: true })
-//       .isDate()
-//       .withMessage("valid startDate is required"),
-//     check('endDate')
-//       .exists({ checkFalsy: true })
-//       .isDate()
-//       .withMessage("valid endDate is required"),
-//     handleValidationErrors
-//   ];
-
 router.get('/current',restoreUser,requireAuth,async (req, res) => {
     
     let allBookings=await Booking.findAll({

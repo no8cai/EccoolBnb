@@ -45,7 +45,7 @@ router.post(
       let tempuser=user.toJSON();
       tempuser.token=token
 
-      return res.json(tempuser);
+      return res.json({user:tempuser});
       }
     }); 
 
