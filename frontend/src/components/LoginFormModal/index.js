@@ -25,6 +25,20 @@ function LoginFormModal() {
       );
   };
 
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.demoUserlogin())
+      .then(closeModal)
+      .catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
+  };
+
+
   return (
     <>
       <h1>Log In</h1>
@@ -54,6 +68,9 @@ function LoginFormModal() {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <form onSubmit={demoSubmit}>
+        <button type="submit">DemoUserLogin</button>
+        </form>
     </>
   );
 }

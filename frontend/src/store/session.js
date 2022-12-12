@@ -33,6 +33,22 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
+//demouser
+export const demoUserlogin = () => async (dispatch) => {
+
+    const response = await csrfFetch('/api/session', {
+      method: 'POST',
+      body: JSON.stringify({
+        credential:'Demo-lition',
+        password:'password'
+      }),
+    });
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
+  };
+
+
 
 const initialState = { user: null };
 

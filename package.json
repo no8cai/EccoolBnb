@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/no8cai/API-project.git"
+    "url": "git+https://github.com/no8cai/EccoolBnb.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/no8cai/API-project/issues"
+    "url": "https://github.com/no8cai/EccoolBnb/issues"
   },
-  "homepage": "https://github.com/no8cai/API-project#readme",
+  "homepage": "https://github.com/no8cai/EccoolBnb#readme",
   "dependencies": {
     "pg": "^8.8.0"
   }

@@ -1,3 +1,14 @@
 .hidden{
     display: none
 }
+
+.bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.logo {
+    color: #ff385c;
+}

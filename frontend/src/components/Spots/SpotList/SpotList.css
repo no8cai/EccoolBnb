@@ -1,0 +1,24 @@
+.address{
+    display: flex;
+    gap:10px;
+}
+
+.listitem{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: auto;
+    justify-content: center;
+    gap:10px;
+    align-content: space-between;
+}
+
+.item{
+    color:white;
+    gap:50px;
+}
+
+.address{
+    display: flex;
+    align-items: space-around;
+}
