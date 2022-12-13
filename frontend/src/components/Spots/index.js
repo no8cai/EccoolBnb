@@ -4,18 +4,11 @@ import SingleSpot from './SingleSpot';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpots } from '../../store/spot';
+import SpotForm from './SpotForm';
 // import { useParams } from 'react-router-dom';
 // import Reviews from '../Reviews';
 
-const Spots =()=>{
-    // const { spotId } = useParams();
-    // const singleSpot = useSelector(state=>state.spot.singleSpot);
-    // useEffect(() => {
-    //     //   dispatch(fetchSpots());
-    //       dispatch(fetchOneSpot(spotId));
-    //     //   setLoad(true)
-    //     }, [spotId]);
-    
+const Spots =()=>{    
 
     const dispatch = useDispatch();
     
@@ -34,13 +27,15 @@ const Spots =()=>{
      <Switch>
      <Route exact path="/">
      <SpotList spotsObj={spotsObj}/>
-     {/* </Route>
-     <Route path="/spots/:spotId/reviews">
-     <Reviews/> */}
      </Route>
+     {/* <Route path="/spots/:spotId/reviews">
+     <Reviews/>
+     </Route> */}
+
      <Route path="/spots/:spotId">
      <SingleSpot/>
      </Route>
+
        {/* <Route path="/spots/new" component={CreateBookForm} /> */}
        {/* <Route path="/spots/:spotId" component={SingleSpot} /> */}
       {/* <Route path="/spots/:spotId/edit" component={EditBookForm} /> */}

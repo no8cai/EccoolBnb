@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 // review types
 const GET_SPOTREVIEWS = 'reviews/getSpotReviews';
 const GET_USERREVIES = 'reviews/getUserReviews';
@@ -44,7 +46,7 @@ export const deleteReview = (id) => {
 
 // review thunk fetch 
 export const fetchSpotReivews = (spotId) => async (dispatch) => {
-    const response = await fetch( `/api/spots/${spotId}/reviews`);
+    const response = await csrfFetch( `/api/spots/${spotId}/reviews`);
 
     if (response.ok) {
     const reviews = await response.json();
@@ -53,7 +55,7 @@ export const fetchSpotReivews = (spotId) => async (dispatch) => {
 };
 
 export const fetchUserReivews = () => async (dispatch) => {
-    const response = await fetch( `/api/reviews/current`);
+    const response = await csrfFetch( `/api/reviews/current`);
 
     if (response.ok) {
     const reviews = await response.json();
@@ -61,6 +63,18 @@ export const fetchUserReivews = () => async (dispatch) => {
     }
 };
 
+// export const fetchCreateReview = (spotId,review) => async (dispatch) => {
+//     const response = await csrfFetch(`/api/spots/:spotId/reviews`,{
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(spot)
+//     });
+//     if (response.ok) {
+//       const created = await response.json();
+//       dispatch(createSpot(created));
+//       return created
+//     }
+//   };
 
 // reveiw reducer
 const initialState = {user:{},spot:{}};

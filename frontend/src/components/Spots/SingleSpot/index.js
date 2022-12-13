@@ -20,19 +20,23 @@ const SingleSpot = () => {
 
 
     const [showMenu, setShowMenu] = useState(false);
-
+    const [isLoading,SetIsloading]=useState(true)
 
     const dispatch = useDispatch();
     
     useEffect(() => {
-      dispatch(fetchOneSpot(spotId));
-      dispatch(fetchSpotReivews(spotId));
-    }, [spotId]);
+      SetIsloading(true)
+      dispatch(fetchOneSpot(spotId))
+      .then(dispatch(fetchSpotReivews(spotId)))
+      .then(SetIsloading(false))
+    }, [spotId,isLoading]);
     
-    if(!singleSpot || !spotreviews) return null
-  
-    const closeMenu = () => setShowMenu(false);
+    if((!singleSpot)||(!spotreviews)) return null
+    // if(isLoading) return 'isloading'
 
+    const closeMenu = () => setShowMenu(false);
+    
+    
     return (
       <div className='spotpage'>
         <h3>{singleSpot.name}</h3>

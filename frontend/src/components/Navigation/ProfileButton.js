@@ -5,6 +5,8 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { NavLink,Route } from "react-router-dom";
+import SpotForm from "../Spots/SpotForm";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -51,11 +53,14 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
-            <li>Manage Listings</li>
-            <li>Manage Reviews</li>
+            <li><NavLink to={`/hosting`}>Manage Listings</NavLink></li>
+            <li><NavLink to={`/`}>Manage Reviews</NavLink></li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
+            {/* <Route path='/hosting'>
+            <SpotForm/>
+            </Route> */}
           </>
         ) : (
           <>

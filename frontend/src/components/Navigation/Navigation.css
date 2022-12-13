@@ -12,3 +12,9 @@
 .logo {
     color: #ff385c;
 }
+
+.menu{
+    /* color: #ff385c; */
+    position: relative;
+    z-index: 10;
+}

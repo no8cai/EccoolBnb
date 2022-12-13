@@ -11,10 +11,10 @@ function Navigation({ isLoaded }){
   return (
     <div className='bar'>
       <div className='logo'>
-        <NavLink exact to="/"><i className='fab fa-airbnb'/>airbnb</NavLink>
+        <NavLink exact to="/"><i className='fab fa-airbnb'/>ECcoolBnb</NavLink>
       </div>
       {isLoaded && (
-        <div>
+        <div className='menu'>
           <ProfileButton user={sessionUser} />
         </div>
       )}
