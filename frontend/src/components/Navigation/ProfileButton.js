@@ -54,13 +54,10 @@ function ProfileButton({ user }) {
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
             <li><NavLink to={`/hosting`}>Manage Listings</NavLink></li>
-            <li><NavLink to={`/`}>Manage Reviews</NavLink></li>
+            <li><NavLink to={`/hosting/reviews`}>Manage Reviews</NavLink></li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
-            {/* <Route path='/hosting'>
-            <SpotForm/>
-            </Route> */}
           </>
         ) : (
           <>

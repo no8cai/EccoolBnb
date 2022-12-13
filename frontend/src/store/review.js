@@ -59,22 +59,44 @@ export const fetchUserReivews = () => async (dispatch) => {
 
     if (response.ok) {
     const reviews = await response.json();
-    dispatch(spotReviews(reviews));
+    dispatch(userReviews(reviews));
     }
 };
 
-// export const fetchCreateReview = (spotId,review) => async (dispatch) => {
-//     const response = await csrfFetch(`/api/spots/:spotId/reviews`,{
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(spot)
-//     });
-//     if (response.ok) {
-//       const created = await response.json();
-//       dispatch(createSpot(created));
-//       return created
-//     }
-//   };
+export const fetchCreateReview = (spotId,review) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(review)
+    });
+    if (response.ok) {
+      const created = await response.json();
+      dispatch(createSpotReview(created));
+    }
+  };
+
+export const fetchEditReview = (review) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${review.id}`,{
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(review)
+    });
+    if (response.ok) {
+      const created = await response.json();
+      dispatch(editReview(created));
+    }
+  };
+
+export const fetchDeleteReview = (id) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${id}`,{
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        dispatch(deleteReview(id));
+      }
+         
+};
+
 
 // reveiw reducer
 const initialState = {user:{},spot:{}};
@@ -97,14 +119,17 @@ const reviewReducer = (state = initialState, action) => {
       case CREAT_SPOTREVIEW:
         newState = {...state}
         newState.spot[action.spot.id]=action.spot
+        newState.user[action.spot.id]=action.spot
         return newState
       case EDIT_REVIEW:
         newState = {...state}
         newState.spot[action.spot.id]=action.spot
+        newState.user[action.spot.id]=action.spot
         return newState
       case DELETE_REVIEW:
         newState = {...state}
         delete newState.spot[action.id]
+        delete newState.user[action.id]
         return newState
       default:
         return state;

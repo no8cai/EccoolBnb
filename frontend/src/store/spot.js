@@ -86,7 +86,7 @@ export const fetchCreateSpot = (spot) => async (dispatch) => {
     if (response.ok) {
       const created = await response.json();
       dispatch(createSpot(created));
-      return created
+    //   return created
     }
   };
   
@@ -99,7 +99,7 @@ export const fetchEditSpot = (spot) => async (dispatch) => {
     if (response.ok) {
       const edited = await response.json();
       dispatch(editSpot(edited));
-      return edited
+    //   return edited
     }
   };
 

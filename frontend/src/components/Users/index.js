@@ -3,18 +3,19 @@ import ListManage from "./ListManager";
 import SpotForm from '../Spots/SpotForm';
 import EditSpot from '../Spots/EditSpot';
 import CreateSpot from '../Spots/CreateSpot';
+import ReviewManage from './ReviewManager';
 
 const ManageCenter=()=>{
 
     return(
         <>
         <Switch>
-          <Route path={'/hosting'}>
+          <Route exact path={'/hosting/reviews'}>
+          <ReviewManage/>
+          </Route>
+          <Route exact path={'/hosting'}>
           <ListManage/>
           </Route>
-          {/* <Route path={'/hosting/reviews'}>
-          <ListManage/>
-          </Route> */}
           <Route exact path={'/createlisting'}>
           <CreateSpot/>
           </Route>
@@ -22,7 +23,6 @@ const ManageCenter=()=>{
           <EditSpot/>
           </Route>
         </Switch>
-         
         </>    
     )
 }

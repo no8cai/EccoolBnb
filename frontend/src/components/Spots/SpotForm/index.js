@@ -6,14 +6,36 @@ import './SpotForm.css'
 
 
 const SpotForm=({spot,formType})=>{
+    
+    let initName,initAddress,initCity,initState,initCountry,initPrice,initDescription;
 
-    const [name, setName] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [country, setCountry] = useState('');
-    const [price, setPrice] = useState(0);
-    const [description, setDescription] = useState('');
+    if(formType==="Edit Spot"){
+        initName=spot.name;
+        initAddress=spot.address;
+        initCity=spot.city;
+        initState=spot.state;
+        initCountry=spot.country;
+        initPrice=spot.price;
+        initDescription=spot.description;
+    }
+    else{
+        initName='';
+        initAddress='';
+        initCity='';
+        initState='';
+        initCountry='';
+        initPrice=0;
+        initDescription='';
+    }
+    
+
+    const [name, setName] = useState(initName);
+    const [address, setAddress] = useState(initAddress);
+    const [city, setCity] = useState(initCity);
+    const [state, setState] = useState(initState);
+    const [country, setCountry] = useState(initCountry);
+    const [price, setPrice] = useState(initPrice);
+    const [description, setDescription] = useState(initDescription);
 
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -32,7 +54,6 @@ const SpotForm=({spot,formType})=>{
         }
         history.push(`/`);
       };
-    console.log(spot.id)
 
     return(
         <form className='spotform' onSubmit={handleSubmit}>

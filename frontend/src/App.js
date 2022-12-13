@@ -6,7 +6,6 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Spots from "./components/Spots";
 // import SingleSpot from "./components/Spots/SingleSpot";
-import SpotForm from "./components/Spots/SpotForm";
 import ManageCenter from "./components/Users";
 
 function App() {
