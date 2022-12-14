@@ -72,7 +72,6 @@ export const fetchCreateReview = (spotId,review) => async (dispatch) => {
     if (response.ok) {
       const created = await response.json();
       dispatch(createSpotReview(created));
-      return created
     }
   };
 
@@ -118,9 +117,8 @@ const reviewReducer = (state = initialState, action) => {
         })
         return newState;
       case CREAT_SPOTREVIEW:
-        newState = {...state,spot:{...state.spot},user:{...state.user}}
+        newState = {...state,spot:{...state.spot}}
         newState.spot[action.review.id]=action.review
-        // newState.user[action.review.id]=action.review
         return newState
       case EDIT_REVIEW:
         newState = {...state,spot:{...state.spot},user:{...state.user}}

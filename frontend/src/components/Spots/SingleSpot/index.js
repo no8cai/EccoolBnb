@@ -48,13 +48,13 @@ const SingleSpot = () => {
       <div className='spotpage'>
         <h3>{singleSpot.name}</h3>
         <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
-        {/* <div>
+        <div>
           <OpenModalMenuItem
                itemText={`${singleSpot.numReviews} reviews`} 
                onItemClick={closeMenu}
                modalComponent={<Reviews spotreviews={spotreviews}/>}
              />
-        </div> */}
+        </div>
         <div>
             {singleSpot.SpotImages.map(({id,url})=>(
             <div key={id}>{url}</div>

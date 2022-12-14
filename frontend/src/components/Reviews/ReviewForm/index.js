@@ -35,10 +35,10 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
         if(formType==="Create Review"){
           dispatch(fetchCreateReview(spotId,tempReview));
           }
-        // else if(formType==="Edit Review"){
-        //   dispatch(fetchEditReview(tempReview));
-        // }
-        closeMenu();
+        else if(formType==="Edit Review"){
+          dispatch(fetchEditReview(tempReview));
+        }
+   
       };
 
     return(

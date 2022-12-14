@@ -359,9 +359,17 @@ router.post('/:spotId/reviews',restoreUser,requireAuth,validateReviews,async (re
         stars,
         userId:user.id
     })
+    
+    const tempReview=await Review.findOne({
+        include: [
+        { model:User,attributes: ['id','firstName','lastName']},
+        { model:ReviewImage,attributes: ['id','url']}
+        ],
+        where:{id:newReview.id}
+    });
 
     res.statusCode=201
-    res.json(newReview)
+    res.json(tempReview)
   }
 );
 
