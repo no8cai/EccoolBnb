@@ -13,10 +13,10 @@ const Reviews =({spotreviews})=>{
     // useEffect(() => {
     //     dispatch(fetchSpotReivews(spotId))
     // }, [spotId]);
-        
+    const tempSpotviews =[...spotreviews];    
     return(
         <div>
-            {spotreviews.map(({id,User,review,createdAt})=>(
+            {tempSpotviews.map(({id,User,review,createdAt})=>(
             <div key={id}>
                <div>{User.firstName}</div>
                <div>{createdAt.slice(0,10)}</div>

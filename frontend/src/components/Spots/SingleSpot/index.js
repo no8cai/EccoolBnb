@@ -14,10 +14,10 @@ import CreateSpotReview from '../../Reviews/CreateSpotReview';
 const SingleSpot = () => {
 
     const { spotId } = useParams();
-    const singleSpot = useSelector(state=>state.spot.singlespot[spotId]);
+    const singleSpot = useSelector(state=>state.spot.singlespot);
     const spotreviewsObj = useSelector(state=>state.review.spot);
     const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+spotId});
-
+    
 
 
     const [showMenu, setShowMenu] = useState(false);
@@ -32,9 +32,9 @@ const SingleSpot = () => {
       .then(dispatch(fetchSpotReivews(spotId)))
     //   dispatch(fetchSpotReivews(spotId))
     //   .then(SetIsloading(false))
-    }, [spotId]);
+    }, []);
     
-    if((!singleSpot)) return null
+    if(!singleSpot.SpotImages) return null
     // if(isLoading) return 'isloading'
 
     const closeMenu = () => setShowMenu(false);
@@ -48,16 +48,13 @@ const SingleSpot = () => {
       <div className='spotpage'>
         <h3>{singleSpot.name}</h3>
         <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
-        <div>
-        {/* <NavLink to={`/spots/${spotId}/reviews`} >
-            {`${singleSpot.numReviews} reviews`}
-        // </NavLink> */}
+        {/* <div>
           <OpenModalMenuItem
                itemText={`${singleSpot.numReviews} reviews`} 
                onItemClick={closeMenu}
                modalComponent={<Reviews spotreviews={spotreviews}/>}
              />
-        </div>
+        </div> */}
         <div>
             {singleSpot.SpotImages.map(({id,url})=>(
             <div key={id}>{url}</div>
