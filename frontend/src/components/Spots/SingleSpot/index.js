@@ -8,7 +8,8 @@ import './SingleSpot.css';
 import Reviews from '../../Reviews';
 import OpenModalMenuItem from '../../Navigation/OpenModalMenuItem';
 import { fetchSpotReivews } from '../../../store/review';
-
+import { useHistory } from 'react-router-dom';
+import CreateSpotReview from '../../Reviews/CreateSpotReview';
 
 const SingleSpot = () => {
 
@@ -20,22 +21,28 @@ const SingleSpot = () => {
 
 
     const [showMenu, setShowMenu] = useState(false);
-    const [isLoading,SetIsloading]=useState(true)
+    // const [isLoading,SetIsloading]=useState(true)
 
     const dispatch = useDispatch();
+    const history=useHistory(); 
     
     useEffect(() => {
-      SetIsloading(true)
+    //   SetIsloading(true)
       dispatch(fetchOneSpot(spotId))
       .then(dispatch(fetchSpotReivews(spotId)))
-      .then(SetIsloading(false))
-    }, [spotId,isLoading]);
+    //   dispatch(fetchSpotReivews(spotId))
+    //   .then(SetIsloading(false))
+    }, [spotId]);
     
-    if((!singleSpot)||(!spotreviews)) return null
+    if((!singleSpot)) return null
     // if(isLoading) return 'isloading'
 
     const closeMenu = () => setShowMenu(false);
     
+    const createEvents=()=>{
+        history.push('/createreview')
+    }
+
     
     return (
       <div className='spotpage'>
@@ -64,6 +71,13 @@ const SingleSpot = () => {
            <li>{`${singleSpot.numReviews} reviews`}</li>
            </div>
            <Reviews spotreviews={spotreviews}/>
+
+           <OpenModalMenuItem
+               itemText={`add Reviews`} 
+               onItemClick={closeMenu}
+               modalComponent={<CreateSpotReview spotId={spotId} closeMenu={closeMenu}/>}
+             />
+           {/* <button onClick={()=>{createEvents()}}>add Reviews</button> */}
         </div>  
         {/* <img
           src={singleArticle?.imageUrl}

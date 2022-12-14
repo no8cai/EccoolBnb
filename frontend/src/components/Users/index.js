@@ -4,12 +4,16 @@ import SpotForm from '../Spots/SpotForm';
 import EditSpot from '../Spots/EditSpot';
 import CreateSpot from '../Spots/CreateSpot';
 import ReviewManage from './ReviewManager';
+import CreateSpotReview from '../Reviews/CreateSpotReview';
 
 const ManageCenter=()=>{
 
     return(
         <>
         <Switch>
+          <Route exact path={'/createreview'}>
+          <CreateSpotReview/>
+          </Route>
           <Route exact path={'/hosting/reviews'}>
           <ReviewManage/>
           </Route>

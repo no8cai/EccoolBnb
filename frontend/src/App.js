@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import Spots from "./components/Spots";
 // import SingleSpot from "./components/Spots/SingleSpot";
 import ManageCenter from "./components/Users";
+import { fetchSpots } from "./store/spot";
+import { useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ function App() {
     dispatch(sessionActions.restoreUser())
     .then(() => setIsLoaded(true));
   }, [dispatch]);
+    
 
 
   return (
@@ -31,7 +34,7 @@ function App() {
         path={["/","/spots/:spotId"]}>
         <Spots/>
         </Route>
-        <Route path={["/hosting", "/createlisting","/editlisting/:spotId","/hosting/reviews"]}>
+        <Route path={["/hosting", "/createlisting","/editlisting/:spotId","/hosting/reviews","/createreview"]}>
         <ManageCenter/>
         </Route>
       {/* </Switch>  */}

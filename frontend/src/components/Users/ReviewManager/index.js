@@ -30,7 +30,7 @@ const ReviewManage=()=>{
             {/* <h3>{`Welcome ${currentUser.firstName}`}</h3> */}
             <h4>Your Reviews</h4>
             <div className="list">
-            {reviews.map(({ id, starts, review,spotId,ReviewImages}) => (
+            {reviews.map(({ id, starts, review,spotId}) => (
                 <div key={id}>
                 <div><NavLink to={`/reviews/${id}`}>
                     {/* <div>{ReviewImages[0]}</div> */}

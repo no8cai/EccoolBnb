@@ -22,17 +22,17 @@ export const userReviews = ({Reviews}) => {
     };
   };
 
-export const createSpotReview = (Review) => {
+export const createSpotReview = (review) => {
     return {
       type: CREAT_SPOTREVIEW,
-      Review
+      review
     };
   };
 
-export const editReview = (Review) => {
+export const editReview = (review) => {
     return {
       type: EDIT_REVIEW,
-      Review
+      review
     };
   };
 
@@ -72,6 +72,7 @@ export const fetchCreateReview = (spotId,review) => async (dispatch) => {
     if (response.ok) {
       const created = await response.json();
       dispatch(createSpotReview(created));
+      return created
     }
   };
 
@@ -105,29 +106,29 @@ const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
       case GET_SPOTREVIEWS: 
-        newState = {...state}
+        newState = {...state,spot:{...state.spot}}
         action.Reviews.forEach(review => {
         newState.spot[review.id] = review
         })
         return newState;
       case GET_USERREVIES:
-        newState = {...state}
+        newState = {...state,user:{...state.user}}
         action.Reviews.forEach(review => {
         newState.user[review.id] = review
         })
         return newState;
       case CREAT_SPOTREVIEW:
-        newState = {...state}
-        newState.spot[action.spot.id]=action.spot
-        newState.user[action.spot.id]=action.spot
+        newState = {...state,spot:{...state.spot}}
+        newState.spot[action.review.id]=action.review
+        // newState.user[action.review.id]=action.review
         return newState
       case EDIT_REVIEW:
-        newState = {...state}
-        newState.spot[action.spot.id]=action.spot
-        newState.user[action.spot.id]=action.spot
+        newState = {...state,spot:{...state.spot},user:{...state.user}}
+        newState.spot[action.review.id]=action.review
+        newState.user[action.review.id]=action.review
         return newState
       case DELETE_REVIEW:
-        newState = {...state}
+        newState = {...state,spot:{...state.spot},user:{...state.user}}
         delete newState.spot[action.id]
         delete newState.user[action.id]
         return newState

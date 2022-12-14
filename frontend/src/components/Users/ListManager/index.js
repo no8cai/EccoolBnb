@@ -31,7 +31,6 @@ const ListManage=()=>{
         dispatch(fetchDeleteSpot(id))
     }
 
-    if(!spots) return null
 
     return(
             <>

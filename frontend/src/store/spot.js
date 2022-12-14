@@ -122,35 +122,35 @@ const spotReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
       case LOAD_SPOTS: 
-        newState = {...state}
+        newState = {...state,allspots:{...state.allspots}}
         action.Spots.forEach(spot => {
         newState.allspots[spot.id] = spot
         })
         return newState;
       case GET_USERSPOTS: 
-        newState = {...state}
+        newState = {...state,userspots:{...state.userspots}}
         action.Spots.forEach(spot => {
         newState.userspots[spot.id] = spot
         })
         return newState;
       case GET_SINGLESPOT:
-        newState = {...state}
+        newState = {...state,singlespot:{...state.singlespot}}
         newState.singlespot[action.spot.id]=action.spot
         return newState;
       case CREAT_SPOT:
-        newState = {...state}
+        newState = {...state,allspots:{...state.allspots},userspots:{...state.userspots},singlespot:{...state.singlespot}}
         newState.allspots[action.spot.id]=action.spot
         newState.singlespot[action.spot.id]=action.spot
         newState.userspots[action.spot.id]=action.spot
         return newState
       case EDIT_SPOT:
-        newState = {...state}
+        newState = {...state,allspots:{...state.allspots},userspots:{...state.userspots},singlespot:{...state.singlespot}}
         newState.allspots[action.spot.id]=action.spot
         newState.singlespot[action.spot.id]=action.spot
         newState.userspots[action.spot.id]=action.spot
         return newState
       case DELETE_SPOT:
-        newState = {...state}
+        newState = {...state,allspots:{...state.allspots},userspots:{...state.userspots},singlespot:{...state.singlespot}}
         delete newState.allspots[action.id]
         delete newState.singlespot[action.id]
         delete newState.userspots[action.id]

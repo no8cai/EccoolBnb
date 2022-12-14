@@ -6,17 +6,14 @@ import { useEffect } from "react";
 const Reviews =({spotreviews})=>{
 
     // const dispatch = useDispatch();
-    // const spotreviewsObj = useSelector(state=>state.review.spot);
-  
+
+    // const spotreviewsObj = useSelector(state=>state.review.spot[spotId]);
     // const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+spotId});
 
-
     // useEffect(() => {
-    //     dispatch(fetchSpotReivews(spotId));
-    //   }, [spotId]);
-
-      if(!spotreviews) return null
-
+    //     dispatch(fetchSpotReivews(spotId))
+    // }, [spotId]);
+        
     return(
         <div>
             {spotreviews.map(({id,User,review,createdAt})=>(

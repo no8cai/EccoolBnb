@@ -17,7 +17,7 @@ const Spots =()=>{
   
     useEffect(() => {
       dispatch(fetchSpots());
-    }, [dispatch]);
+    }, [dispatch,spotsObj.length]);
 
 
  return(
