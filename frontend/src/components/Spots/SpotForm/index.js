@@ -17,6 +17,7 @@ const SpotForm=({spot,formType})=>{
         initCountry=spot.country;
         initPrice=spot.price;
         initDescription=spot.description;
+        // setHide(false)
     }
     else{
         initName='';
@@ -26,6 +27,7 @@ const SpotForm=({spot,formType})=>{
         initCountry='';
         initPrice=0;
         initDescription='';
+        // setHide(true)
     }
     
 
@@ -39,9 +41,11 @@ const SpotForm=({spot,formType})=>{
     const [description, setDescription] = useState(initDescription);
     const [url, setUrl] = useState('');
     const [preview, setPreview] = useState(true);
+    // const [hide,setHide] = useState(true)
 
     const [validationErrors, setValidationErrors] = useState([]);
 
+    
     const history=useHistory()
     const dispatch = useDispatch();
 
@@ -66,79 +70,98 @@ const SpotForm=({spot,formType})=>{
           <ul className='errors'></ul>
           <label>
           name
+          </label>
           <input
+          className='input'
+          placeholder='input name'
           type="text"
           name="name"
           onChange={(e) => setName(e.target.value)}
           value={name}/>
-         </label>
+         
          <label>
           address
+          </label>
           <input
+          className='input'
+          placeholder='input address'
           type="text"
           name="address"
           onChange={(e) => setAddress(e.target.value)}
           value={address}/>
-         </label>
-         <label>
-          city
+         
+         <label>city</label>
           <input
+          className='input'
+          placeholder='input city'
           type="text"
           name="city"
           onChange={(e) => setCity(e.target.value)}
           value={city}/>
-         </label>
+         
+
          <label>
-          state
+          state</label>
           <input
+          className='input'
+          placeholder='input state'
           type="text"
           name="state"
           onChange={(e) => setState(e.target.value)}
           value={state}/>
-         </label>
+         
          <label>
-          country
+          country</label>
           <input
+          className='input'
+          placeholder='input country'
           type="text"
           name="country"
           onChange={(e) => setCountry(e.target.value)}
           value={country}/>
-         </label>
+         
          <label>
-          price
+          price</label>
           <input
+          className='input'
+          placeholder='input price'
           type="flot"
           name="price"
           onChange={(e) => setPrice(e.target.value)}
           value={price}/>
-         </label>
+         
          <label>
-          description
-          <input
+          description</label>
+          <textarea
+          className='input'
+          placeholder='input description'
           type="text"
           name="description"
           onChange={(e) => setDescription(e.target.value)}
           value={description}/>
-         </label>
-         <label>
-          imageUrl
-          <input
+         
+          <label>
+          imageUrl</label>
+          <textarea
+          disabled={formType==="Edit Spot"}
+          className='input'
+          placeholder='input description'
           type="text"
           name="url"
           onChange={(e) => setUrl(e.target.value)}
           value={url}/>
-         </label>
-          <div>
+
           <label>
-          preview
+          preview</label>
           <input
+          disabled={formType==="Edit Spot"}
+          className='input'
           type="boolean"
           name="preview"
           onChange={(e) => setPreview(e.target.value)}
           value={preview}/>
-          </label>
-          </div>
-         <input type="submit" value={formType} />
+
+         <input type="submit" value={formType} className="spotbutton"/>
         </form>
     )
 }

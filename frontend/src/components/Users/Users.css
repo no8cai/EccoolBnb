@@ -22,13 +22,13 @@
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid #E61E4D;
     background-color: #E61E4D;
     color: white;
 }
 
 .buttons:hover{
-    background-color: rgb(128, 128, 128,10%);
+    background-color: rgb(230, 30, 77,80%);
 }
 
 .topbar{

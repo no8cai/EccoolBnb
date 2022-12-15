@@ -1,9 +1,27 @@
 .spotform{
     display: flex;
-    flex-direction:column;
+    flex-direction:column; 
     gap:10px;
     justify-content: center;
-    align-items:flex-start;
-    margin-left: auto;
+    align-items:center; 
+    margin-left: 200px;
+    margin-right: 200px;
+    width: 25vw;
+    margin-bottom: 50px;
+}
+.input{
+    width: 100%;   
+}
+.spotbutton{
     width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #E61E4D;
+    background-color: #E61E4D;
+    color: white;
+    height: 40px;
+}
+.spotbutton:hover{
+    background-color: rgb(230, 30, 77,85%);
 }

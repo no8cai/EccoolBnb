@@ -30,69 +30,69 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="signupcompo">
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit} className='signupform'>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
         <label>
-          Email
+          Email</label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
+        
         <label>
-          Username
+          Username </label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </label>
+       
         <label>
-          First Name
+          First Name</label>
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        </label>
+        
         <label>
-          Last Name
+          Last Name</label>
           <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        </label>
+        
         <label>
-          Password
+          Password  </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
+  
         <label>
-          Confirm Password
+          Confirm Password  </label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Sign Up</button>
+      
+        <button type="submit" className="buttons signupbt">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

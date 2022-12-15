@@ -34,3 +34,19 @@ div.userinfo i{
     display: flex;
     flex-wrap: wrap;
 }
+
+.reviewform{
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 30vw;
+    padding: 10px;
+    gap:10px;
+    font-family: 'Figtree';
+    border-radius: 10px;
+}
+
+.revi{
+    border: 0px solid black;
+    height: 50px;
+}
