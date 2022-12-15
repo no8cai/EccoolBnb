@@ -11,7 +11,7 @@ function Navigation({ isLoaded }){
   return (
     <div className='bar'>
       <div className='logo'>
-        <NavLink exact to="/"><i className='fas fa-umbrella-beach'/>ECcoolBnb</NavLink>
+        <NavLink className={'toplogo'} exact to="/"><i className='fas fa-umbrella-beach'/>ECcoolBnb</NavLink>
       </div>
       {isLoaded && (
         <div className='menu'>

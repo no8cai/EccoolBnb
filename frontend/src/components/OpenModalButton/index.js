@@ -1,11 +1,13 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
+import '../Navigation/Navigation.css';
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose, // optional: callback function that will be called once the modal is closed
+  buttonStyle
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -16,7 +18,7 @@ function OpenModalButton({
   };
 
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <button className={buttonStyle} onClick={onClick}>{buttonText}</button>
   );
 }
 

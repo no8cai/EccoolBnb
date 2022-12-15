@@ -4,10 +4,11 @@ import { Route, Switch, NavLink } from 'react-router-dom';
 import { fetchUserSpots } from "../../../store/spot";
 import { useHistory } from "react-router-dom";
 import { fetchDeleteSpot } from "../../../store/spot";
-
+import "../Users.css"
+import { restoreUser } from "../../../store/session";
 
 const ListManage=()=>{
-
+    
     const dispatch = useDispatch();
     // const currentUser = useSelector(state=>state.session.user);
     const spotsObj = useSelector(state=>state.spot.userspots);
@@ -15,6 +16,7 @@ const ListManage=()=>{
     const history=useHistory();  
 
     useEffect(() => {
+        //   dispatch(restoreUser())
           dispatch(fetchUserSpots());
     }, [dispatch]); 
     
@@ -33,33 +35,37 @@ const ListManage=()=>{
 
 
     return(
-            <>
-            <h3>User management</h3>
-            {/* <h3>{`Welcome ${currentUser.firstName}`}</h3> */}
-            <h4>Your listing</h4>
-            <button onClick={()=>createEvents()}>List your home</button>
-            <div className="list">
-            {spots.map(({ id, city,country,price,avgRating,previewImage }) => (
-                <div key={id}>
-                <div className='item'><NavLink to={`/spots/${id}`}>
-                    <div>{previewImage}</div>
-                    <div className='address'>
-                       <div>{`${city},${country}`}</div>
+            <div>
+            <div className="topbar">
+            <h1>Welcome to Management Center</h1>
+            <button onClick={()=>createEvents()} className='listbutton'>List your home</button>
+            </div>
+            <h3>Your listings</h3>
+            <div className="managelist">
+            {spots.map(({ id, name,address,city,state,country,price,avgRating,previewImage }) => (
+                <div key={id} className='managebox'>
+                <div className='boxitems'>
+                    <NavLink to={`/spots/${id}`} className="links">
+                    <h3>{name}</h3>
+                    <div>{address}</div>
+                    <div className='manageaddress'>
+                       
+                       <div>{`${city},${state},${country}`}</div>
                        <div><i className="fas fa-star" />{avgRating}</div>
                     </div>
                     <div>
                        {`$${price} night`}
                     </div>
-                    
-                </NavLink></div>
-                <div>
-                    <button onClick={()=>editEvents(id)}>Edit</button>
-                    <button onClick={()=>deleteEvents(id)}>Delete</button>
+                    </NavLink>
+                </div>
+                <div className="button-section">
+                    <button onClick={()=>editEvents(id)} className="buttons"><i className="fa-regular fa-pen-to-square" />Edit</button>
+                    <button onClick={()=>deleteEvents(id)} className='buttons'><i className="fa-solid fa-trash-can" />Delete</button>
                 </div>
                 </div>
               ))}
             </div>
-            </>    
+            </div>    
         )
     }
     

@@ -5,12 +5,17 @@ import EditSpot from '../Spots/EditSpot';
 import CreateSpot from '../Spots/CreateSpot';
 import ReviewManage from './ReviewManager';
 import CreateSpotReview from '../Reviews/CreateSpotReview';
+import AddSpotImage from '../Images/SpotImage/AddSpotImage';
+import "./Users.css"
 
 const ManageCenter=()=>{
 
     return(
-        <>
+        <div className='usermanage'>
         <Switch>
+          {/* <Route exact path={'/addspotimage'}>
+          <AddSpotImage/>
+          </Route> */}
           <Route exact path={'/createreview'}>
           <CreateSpotReview/>
           </Route>
@@ -27,7 +32,7 @@ const ManageCenter=()=>{
           <EditSpot/>
           </Route>
         </Switch>
-        </>    
+        </div>    
     )
 }
 

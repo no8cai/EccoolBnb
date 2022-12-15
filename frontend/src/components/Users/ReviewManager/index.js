@@ -32,35 +32,34 @@ const ReviewManage=()=>{
     
 
     return(
-            <>
-            <h3>User management</h3>
-            {/* <h3>{`Welcome ${currentUser.firstName}`}</h3> */}
-            <h4>Your Reviews</h4>
-            <div className="list">
+            <div>
+            <h1 className="revbar">Welcome to Management Center</h1>
+            <h3>Your Reviews</h3>
+            <div className="managelist">
             {reviews.map(({ id, stars, review,spotId}) => (
-                <div key={id}>
-                {/* <div><NavLink to={`/reviews/${id}`}> */}
-                <div>
-                    {/* <div>{ReviewImages[0]}</div> */}
-                    <div>{`Location ${spotId}`}</div>
+                <div key={id} className='managebox'> 
+                <div className="managereinfo">
+                    <div className="managerev">
+                    <h4>{`Location ${spotId}`}</h4>
                     <div><i className="fas fa-star" />{stars}</div>
+                    </div>
                     <div>{review}</div> 
-                {/* </NavLink></div> */}
                 </div>
-                <div>
+                <div className="button-section">
                     <div>
                          <OpenModalButton
-                          buttonText={`Edit`} 
+                          buttonStyle={'buttons'}
+                          buttonText={<div><i className="fa-regular fa-pen-to-square" />edit</div>} 
                           onItemClick={closeMenu}
                           modalComponent={<EditReview id={id} />}
                           />
                     </div>
-                    <button onClick={()=>deleteEvents(id)}>Delete</button>
+                    <button className="buttons" onClick={()=>deleteEvents(id)}><i className="fa-solid fa-trash-can" />Delete</button>
                 </div>
                 </div>
               ))}
             </div>
-            </>    
+            </div>    
         )
     }
     

@@ -1,0 +1,36 @@
+div.userinfo i{
+   font-size: 50px;
+}
+
+.username{
+    display: flex;
+    flex-direction: column;
+}
+.userinfo{
+    display: flex;
+    align-items: center;
+    gap:5px
+}
+.name{
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.spotreview{
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.review{
+    margin-top: 10px;
+    margin-bottom: 50px;
+    height: 100px;
+    font-size: 17px;
+}
+
+.rev{
+    display: flex;
+    flex-wrap: wrap;
+}

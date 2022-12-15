@@ -4,17 +4,91 @@
 
 .bar{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 100px;
+    margin-right:0px;
+    border-bottom: 2px solid rgb(0, 0, 0,7%);
+    padding-right: 5vw;
+    padding-left: 5vw;
+    padding-top: 2vh;
+    padding-bottom: 10vh;
 }
 
 .logo {
     color: #ff385c;
 }
 
+.toplogo {
+    color: #ff385c;
+    text-decoration:none;
+    font-family: 'Dancing Script';
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 .menu{
-    /* color: #ff385c; */
-    position: relative;
-    z-index: 10;
+    display: inline-block;
+}
+
+.menubutton{
+    background-color: white;
+    /* color: white; */
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 70%;
+    gap:10px;
+    border: 2px solid rgb(0, 0, 0, 20%);
+}
+
+.profile-dropdown{
+    /* display: none; */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 5%;
+    border-radius: 10px;
+    min-height: 200px;
+    padding-left: 0px;
+}
+
+/* .profile-dropdown a:hover {background-color: #f1f1f1} */
+
+.profile-dropdown:hover{
+    /* color:white; */
+    cursor: pointer;
+    
+}
+
+.topleftmenulist {
+    padding: 15px;
+    margin-left: 0px;
+    background-color: white;
+}
+
+.topleftmenulist:hover{
+    background-color: rgb(128, 128, 128,10%);
+}
+
+.topleftlink{
+    text-decoration:none;
+    color: black;
+}
+
+.fa-bars{
+    font-size: 15px;
+}
+.fas{
+    margin: 5px;
+}
+.logout{
+    border-top: 2px solid rgb(0, 0, 0,20%);
+}
+
+.top{
+    font-weight: bold;
 }

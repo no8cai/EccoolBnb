@@ -7,8 +7,7 @@ import Navigation from "./components/Navigation";
 import Spots from "./components/Spots";
 // import SingleSpot from "./components/Spots/SingleSpot";
 import ManageCenter from "./components/Users";
-import { fetchSpots } from "./store/spot";
-import { useSelector } from "react-redux";
+import './index.css'
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +21,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className="rootchild">
       <Navigation isLoaded={isLoaded} />
       {/* <ManageCenter/> */}
       {/* {isLoaded && (

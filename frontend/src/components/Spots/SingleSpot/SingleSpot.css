@@ -1,3 +1,82 @@
 .spotpage{
-    margin-left: 200px;
+   margin-left: 230px;
+   margin-right: 230px;
+}
+.spotinfo{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.reviewlink{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.infoitem{
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+
+.infotext{
+    padding-left: 30px;
+}
+
+.infosection{
+    display: flex;
+    border-bottom: 2px solid rgb(0, 0, 0,10%);
+    padding-bottom: 5vh;
+}
+
+.info-title{
+    
+    border-bottom: 2px solid rgb(0, 0, 0,10%);
+}
+.info-left{
+    width: 40vw;
+}
+.info-right{
+    border: 1px solid rgb(221, 221, 221);
+    width: 20vw;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.right-right{
+    display: flex;
+    align-items: center;
+}
+
+.right-left{
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+.right-top{
+    display: flex;
+    justify-content:space-between;
+}
+
+.info-right{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+
+.addreview{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #E61E4D;
+    color: white;
+    border-radius: 10px;
+    height: 10vh;
+}
+
+.reviewbar{
+    display: flex;
+    align-items: center;
+    gap:5px;
 }

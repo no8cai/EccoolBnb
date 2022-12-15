@@ -8,16 +8,15 @@ const SpotList = ({spotsObj}) => {
 
     return (
       <div>
-        <h3>Spot List</h3>
         <div className='listitem'>
           {spots.map(({ id, city,country,price,avgRating,previewImage }) => (
             <div className='item' key={id}><NavLink to={`/spots/${id}`}>
-                <div>{previewImage}</div>
+                <div className='itemimg'><img src={previewImage} className="image"/></div>
                 <div className='address'>
                    <div>{`${city},${country}`}</div>
                    <div><i className="fas fa-star" />{avgRating}</div>
                 </div>
-                <div>
+                <div className='price'>
                    {`$${price} night`}
                 </div>
             </NavLink></div>

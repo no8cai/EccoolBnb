@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCreateSpot,fetchEditSpot } from '../../../store/spot';
+import { fetchCreateSpot,fetchEditSpot,fetchAddImage } from '../../../store/spot';
 import './SpotForm.css'
 
 
@@ -29,6 +29,7 @@ const SpotForm=({spot,formType})=>{
     }
     
 
+
     const [name, setName] = useState(initName);
     const [address, setAddress] = useState(initAddress);
     const [city, setCity] = useState(initCity);
@@ -36,6 +37,8 @@ const SpotForm=({spot,formType})=>{
     const [country, setCountry] = useState(initCountry);
     const [price, setPrice] = useState(initPrice);
     const [description, setDescription] = useState(initDescription);
+    const [url, setUrl] = useState('');
+    const [preview, setPreview] = useState(true);
 
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -45,13 +48,15 @@ const SpotForm=({spot,formType})=>{
     const handleSubmit = (e) => {
         e.preventDefault();
         const tempSpot = { ...spot, name, address,city,state,country,price,description };
-    
+        const tempImage={url,preview};
+
         if(formType==="Create Spot"){
-          dispatch(fetchCreateSpot(tempSpot));
+          dispatch(fetchCreateSpot(tempSpot,tempImage))       
           }
         else if(formType==="Edit Spot"){
           dispatch(fetchEditSpot(tempSpot));
-        }
+        }  
+
         history.push(`/`);
       };
 
@@ -115,6 +120,24 @@ const SpotForm=({spot,formType})=>{
           onChange={(e) => setDescription(e.target.value)}
           value={description}/>
          </label>
+         <label>
+          imageUrl
+          <input
+          type="text"
+          name="url"
+          onChange={(e) => setUrl(e.target.value)}
+          value={url}/>
+         </label>
+          <div>
+          <label>
+          preview
+          <input
+          type="boolean"
+          name="preview"
+          onChange={(e) => setPreview(e.target.value)}
+          value={preview}/>
+          </label>
+          </div>
          <input type="submit" value={formType} />
         </form>
     )

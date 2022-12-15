@@ -46,35 +46,53 @@ const SingleSpot = () => {
     
     return (
       <div className='spotpage'>
-        <h3>{singleSpot.name}</h3>
+        <h1>{singleSpot.name}</h1>
+        <div className='spotinfo'>
         <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
         <div>
           <OpenModalMenuItem
                itemText={`${singleSpot.numReviews} reviews`} 
                onItemClick={closeMenu}
                modalComponent={<Reviews spotreviews={spotreviews}/>}
+               itemStyle="reviewlink"
              />
+        </div>
+        <div>{`${singleSpot.city},${singleSpot.state},${singleSpot.country}`}</div>
         </div>
         <div>
             {singleSpot.SpotImages.map(({id,url})=>(
-            <div key={id}>{url}</div>
+            <div key={id}>
+              <img src={url}/>
+            </div>
              ))}
         </div>
-        <div>{`hosted by ${singleSpot.Owner.firstName}`}</div>
-        <div>{`$${singleSpot.price} night`}</div>
-        <div>
-           <div>
-           <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
-           <li>{`${singleSpot.numReviews} reviews`}</li>
-           </div>
-           <Reviews spotreviews={spotreviews}/>
-
-           <OpenModalMenuItem
+        <div className='infosection'>
+        <div className='info-left'>
+        <div className='info-title'><h2>{`${singleSpot.name} hosted by ${singleSpot.Owner.firstName}`}</h2></div>
+        <div className='infoitem'><i className="fa-solid fa-medal" /><h3>{`${singleSpot.Owner.firstName} is a Superhost`}</h3></div>
+        <div className='infotext'>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
+        <div className='infoitem'><i className="fa-solid fa-location-dot"/><h3>Great location</h3></div>
+        <div className='infotext'>most guests gave the location a 5-star rating.</div>
+        </div>
+        <div className='info-right'>
+          <div className='right-top'>
+          <div className='right-left'><h3>{`$${singleSpot.price}`}</h3><div>night</div></div> 
+          <div className='right-right'><i className="fas fa-star" /><div>{singleSpot.avgRating}</div></div>
+          </div>
+          <OpenModalMenuItem
+               itemStyle="addreview"
                itemText={`add Reviews`} 
                onItemClick={closeMenu}
                modalComponent={<CreateSpotReview spotId={spotId} closeMenu={closeMenu}/>}
              />
-           {/* <button onClick={()=>{createEvents()}}>add Reviews</button> */}
+        </div>
+        </div>
+        <div className='reviewsection'>
+        <div className='reviewbar'>
+           <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
+           <div>{`·${singleSpot.numReviews} reviews`}</div>
+        </div>
+           <Reviews spotreviews={spotreviews}/>
         </div>  
         {/* <img
           src={singleArticle?.imageUrl}
