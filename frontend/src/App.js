@@ -28,7 +28,7 @@ function App() {
         <Switch>
         </Switch>
       )} */}
-      {/* <Switch> */}
+      <Switch>
         <Route exact 
         path={["/","/spots/:spotId"]}>
         <Spots/>
@@ -36,7 +36,10 @@ function App() {
         <Route path={["/hosting", "/createlisting","/editlisting/:spotId","/hosting/reviews","/createreview"]}>
         <ManageCenter/>
         </Route>
-      {/* </Switch>  */}
+        <Route>
+          page not found
+        </Route>
+      </Switch> 
     </div>
   );
 }
