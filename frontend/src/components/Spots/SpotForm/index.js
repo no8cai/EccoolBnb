@@ -83,9 +83,10 @@ const SpotForm=({spot,formType})=>{
 
         if(formType==="Create Spot"){
           dispatch(fetchCreateSpot(tempSpot,tempImage))
-          .then(history.push(`/`))
-          .catch((err)=>{
-            errors.push(`Creating process is not complete, please check your input`)
+          .then(()=>{history.push(`/`)})
+          .catch(async (err)=>{
+            const errobj=await err.json();
+            errors.push(errobj.message)
             setValidationErrors(errors)
           
           });
@@ -93,10 +94,11 @@ const SpotForm=({spot,formType})=>{
         else if(formType==="Edit Spot"){
           dispatch(fetchEditSpot(tempSpot))
           .then(history.push(`/`))
-          .catch((err)=>{
-            errors.push(`Editing process is not complete, please check your input`)
+          .catch(async (err)=>{
+            const errobj=await err.json();
+            errors.push(errobj.message)
             setValidationErrors(errors)
-        
+            
           });
         }  
         // setValidationErrors([]) 

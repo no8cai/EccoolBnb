@@ -36,7 +36,7 @@ const SingleSpot = () => {
       .then(dispatch(fetchSpotReivews(spotId)))
     //   dispatch(fetchSpotReivews(spotId))
     //   .then(SetIsloading(false))
-    }, []);
+    }, [spotreviewsObj.length]);
     
     if(!singleSpot.SpotImages) return null
     // if(isLoading) return 'isloading'
@@ -81,7 +81,7 @@ const SingleSpot = () => {
         </div>
         <div className='info-right'>
           <div className='right-top'>
-          <div className='right-left'><h3>{`$${parseInt(singleSpot.price).toFixed(2)}`}</h3><div>night</div></div> 
+          <div className='right-left'><h3>{`$${parseFloat(singleSpot.price).toFixed(2)}`}</h3><div>night</div></div> 
           <div className='right-right'><i className="fas fa-star" /><div>{singleSpot.avgRating}</div></div>
           
          </div>

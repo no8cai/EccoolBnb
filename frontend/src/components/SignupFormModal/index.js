@@ -48,10 +48,11 @@ function SignupFormModal() {
       setErrors([]);
       const temperror=[]
       return dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
-        .then(closeModal)
-        .then(history.push("/"))
-        .catch((err)=>{
-          temperror.push("Creating process in not complete, error occurs")
+      .then(()=>{closeModal()})
+      .then(()=>{history.push("/")})
+      .catch(async (err)=>{
+          const errobj=await err.json()
+          temperror.push(errobj.message)
           setErrors(temperror)
           return
         });

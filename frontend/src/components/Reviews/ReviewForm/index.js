@@ -60,16 +60,18 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
         if(formType==="Create Review"){
           dispatch(fetchCreateReview(spotId,tempReview))
           .then(closeModal)
-          .catch((err)=>{
-            errors.push(`Creating process is not complete, error occurs`)
+          .catch(async (err)=>{
+            const  errobject=await err.json();
+            errors.push(errobject.message)
             setValidationErrors(errors)
           });
           }
         else if(formType==="Edit Review"){
           dispatch(fetchEditReview(tempReview))
           .then(closeModal)
-          .catch((err)=>{
-            errors.push(`Editing process is not complete, error occurs`)
+          .catch(async (err)=>{
+             const  errobject=await err.json();
+            errors.push(errobject.message)
             setValidationErrors(errors)
           });
         }

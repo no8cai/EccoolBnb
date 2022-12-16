@@ -35,12 +35,12 @@ function LoginFormModal() {
     setErrors([]);
     const temperror=[]
     dispatch(sessionActions.login({ credential, password }))
-      .then(closeModal)
-      .then(history.push("/"))
-      .catch((err)=>{
-        temperror.push("internal error")
+      .then(()=>{closeModal()})
+      .then(()=>{history.push("/")})
+      .catch(async (err)=>{
+        const errobj=await err.json();
+        temperror.push(errobj.message)
         setErrors(temperror)
-        return
       });
  
   };
@@ -53,9 +53,7 @@ function LoginFormModal() {
       .then(history.push("/"))
       .catch(
         async (res) => {
-          
           const data = await res.json();
-          console.log(data)
           if (data && data.errors) setErrors(data.errors);
         }
       );

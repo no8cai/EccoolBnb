@@ -17,7 +17,7 @@ const SpotList = ({spotsObj}) => {
                    <div><i className="fas fa-star" />{avgRating}</div>
                 </div>
                 <div className='price'>
-                   {`$${parseInt(price).toFixed(2)} night`}
+                   {`$${parseFloat(price).toFixed(2)} night`}
                 </div>
             </NavLink></div>
           ))}
