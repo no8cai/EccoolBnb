@@ -72,6 +72,9 @@ export const fetchCreateReview = (spotId,review) => async (dispatch) => {
     if (response.ok) {
       const created = await response.json();
       dispatch(createSpotReview(created));
+    }else{
+      const error = await response.json();
+      console.log(error)
     }
   };
 

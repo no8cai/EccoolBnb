@@ -40,7 +40,7 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
       if(review.length<=0){errors.push("Listing's review field is required");}
       if(isNaN(stars)){errors.push("Listing's stars must be a number");}
       else if(stars<=0 ||stars>5){errors.push("Listing's stars must be greater than 0 and max is 5");}
-
+      else if(stars%1!==0){errors.push("Listing's stars must be a interger");}
       setValidationErrors(errors);
 
     }, [review,stars]);

@@ -34,7 +34,7 @@ function SignupFormModal() {
     if(firstName.length<=0){temperrors.push("First name field is required");}
     if(lastName.length<=0){temperrors.push("Last name is required");}
     if(password.length<=0){temperrors.push("Password is required");}
-    if (password !== confirmPassword){temperrors.push("Confirm Password field must be the same as the Password field");}
+    if (password !== confirmPassword){temperrors.push("Confirm password field must be the same as the password field");}
     setErrors(temperrors);
 
   }, [email,username,firstName,lastName,password,confirmPassword]);
