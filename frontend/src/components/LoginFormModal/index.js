@@ -32,15 +32,17 @@ function LoginFormModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    const temperror=[]
     dispatch(sessionActions.login({ credential, password }))
-      .catch(
-        async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-          return
-        }
+      .then(closeModal)
+      .then(history.push("/"))
+      .catch((err)=>{
+         temperror.push("Error, Lets try again")
+        setErrors(temperror)
+        return
+      }
       );
-     
+ 
   };
 
 

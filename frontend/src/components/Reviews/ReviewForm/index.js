@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCreateReview, fetchEditReview } from '../../../store/review';
 import '../Review.css'
+import { useModal } from '../../../context/Modal';
 
 const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
 
@@ -10,6 +11,7 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
     let initReview,initStars;
     const history=useHistory()
     const dispatch = useDispatch();
+    const {closeModal } = useModal();
 
     if(formType==="Edit Review"){
         initReview=theReview.review;
@@ -23,7 +25,6 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
 
     const [review, setReview] = useState(initReview);
     const [stars, setStars] = useState(initStars);
-    const [error,setError]=useState(null)
 
 
     const [validationErrors, setValidationErrors] = useState([]);
@@ -58,24 +59,19 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
 
         if(formType==="Create Review"){
           dispatch(fetchCreateReview(spotId,tempReview))
-          // .then(res=>{
-          //   if(!res.ok){
-          //     throw Error("could not fetch the data for the resource")
-          //   }
-          //   return res.json()
-          // })
+          .then(closeModal)
           .catch((err)=>{
-            // const data= err.json()
-            console.log(err)
-            // console.log(data.errors)
-            setError(err.statusText)
             errors.push(`The process is not complete, error occurs`)
             setValidationErrors(errors)
-            // console.log(error)
-          })
+          });
           }
         else if(formType==="Edit Review"){
-          dispatch(fetchEditReview(tempReview));
+          dispatch(fetchEditReview(tempReview))
+          .then(closeModal)
+          .catch((err)=>{
+            errors.push(`The process is not complete, error occurs`)
+            setValidationErrors(errors)
+          });
         }
    
       };
@@ -104,7 +100,6 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
          
          <input type="submit" value={formType} className='buttons revi'/>
         </form>
-        {error&&<div>{error}</div>}
            <div className='reviewform-errorsec'>
                   <div className='reviewform-title'>
                   <i className="fa-solid fa-circle-exclamation ertlbu" />
