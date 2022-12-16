@@ -8,6 +8,7 @@ import Spots from "./components/Spots";
 // import SingleSpot from "./components/Spots/SingleSpot";
 import ManageCenter from "./components/Users";
 import './index.css'
+import ErrornotFind from "./components/Errors/Error404";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,21 +24,19 @@ function App() {
   return (
     <div className="rootchild">
       <Navigation isLoaded={isLoaded} />
-      {/* <ManageCenter/> */}
       {/* {isLoaded && (
         <Switch>
         </Switch>
       )} */}
       <Switch>
-        <Route exact 
-        path={["/","/spots/:spotId"]}>
+        <Route exact path={["/","/spots/:spotId"]}>
         <Spots/>
         </Route>
         <Route path={["/hosting", "/createlisting","/editlisting/:spotId","/hosting/reviews","/createreview"]}>
         <ManageCenter/>
         </Route>
         <Route>
-          page not found
+          <ErrornotFind/>
         </Route>
       </Switch> 
     </div>

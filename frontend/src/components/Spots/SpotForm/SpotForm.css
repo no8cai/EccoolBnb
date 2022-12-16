@@ -4,13 +4,13 @@
     gap:10px;
     justify-content: center;
     align-items:center; 
-    margin-left: 200px;
-    margin-right: 200px;
+    padding-left: 5vw;
+    padding-right: 5vw;
     width: 25vw;
     margin-bottom: 50px;
 }
 .input{
-    width: 100%;   
+    width: 100%;
 }
 .spotbutton{
     width: 100%;
@@ -25,3 +25,39 @@
 .spotbutton:hover{
     background-color: rgb(230, 30, 77,85%);
 }
+
+.spotform-errors{
+    color: rgb(79, 78, 78);
+    gap: 10px;
+}
+
+.spotform-section{
+    display: flex;
+    
+}
+
+.spotform-errorsec{
+    border: 1px solid rgb(221, 221, 221);
+    width: 20vw;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.ertlbu{
+    color: #c13515;
+    font-size: 25px;
+}
+
+.error-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(0, 0, 0,10%);
+    border-radius: 10px;
+    padding: 20px;
+    gap:10px
+}
+

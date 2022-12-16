@@ -4,38 +4,63 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { useHistory } from "react-router-dom";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const { closeModal } = useModal();
+  const {closeModal } = useModal();
+  const history=useHistory()
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setErrors([]);
+  //   return dispatch(sessionActions.login({ credential, password }))
+  //     .then(closeModal)
+  //     .then(history.push("/"))
+  //     .catch(
+  //       async (res) => {
+  //         const data = await res.json();
+  //         if (data && data.errors) setErrors(data.errors);
+  //       }
+  //     );
+  // };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password }))
-      .then(closeModal)
+    dispatch(sessionActions.login({ credential, password }))
       .catch(
         async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
+          return
         }
       );
+     
   };
+
+
+
 
   const demoSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.demoUserlogin())
       .then(closeModal)
+      .then(history.push("/"))
       .catch(
         async (res) => {
+          
           const data = await res.json();
+          console.log(data)
           if (data && data.errors) setErrors(data.errors);
         }
       );
+
   };
 
 
@@ -49,7 +74,7 @@ function LoginFormModal() {
           ))}
         </ul>
         <label>
-          Username or Email</label>
+          Username</label>
           <input
             type="text"
             value={credential}

@@ -38,15 +38,43 @@ div.userinfo i{
 .reviewform{
     display: flex;
     flex-direction: column;
-    height: 80vh;
-    width: 30vw;
     padding: 10px;
     gap:10px;
-    font-family: 'Figtree';
-    border-radius: 10px;
+    width: 80%;
 }
 
 .revi{
     border: 0px solid black;
     height: 50px;
+}
+
+.reviewsection{
+    height: 80vh;
+    width: 30vw;
+    font-family: 'Figtree';
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.reviewform-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    margin-left: 2%;
+    margin-right:2%;
+}
+
+.reviewform-errorsec{
+    border: 1px solid rgb(221, 221, 221);
+    width: 70%;
+    height: 35%;
+    margin-bottom: 60px;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }

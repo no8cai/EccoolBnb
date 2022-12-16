@@ -72,7 +72,7 @@ const SingleSpot = () => {
         <div className='infoitem'><i className="fa-solid fa-medal" /><h3>{`${singleSpot.Owner.firstName} is a Superhost`}</h3></div>
         <div className='infotext'>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
         <div className='infoitem'><i className="fa-solid fa-location-dot"/><h3>Great location</h3></div>
-        <div className='infotext'>most guests gave the location a 5-star rating.</div>
+        <div className='infotext'>Most guests gave the location a 5-star rating.</div>
         </div>
         <div className='info-right'>
           <div className='right-top'>
@@ -81,13 +81,13 @@ const SingleSpot = () => {
           </div>
           <OpenModalMenuItem
                itemStyle="addreview"
-               itemText={`add Reviews`} 
+               itemText={`Add Reviews`} 
                onItemClick={closeMenu}
                modalComponent={<CreateSpotReview spotId={spotId} closeMenu={closeMenu}/>}
              />
         </div>
         </div>
-        <div className='reviewsection'>
+        <div className='reviewfooter'>
         <div className='reviewbar'>
            <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
            <div>{`·${singleSpot.numReviews} reviews`}</div>

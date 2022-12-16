@@ -1,0 +1,29 @@
+.error404-landing{
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.error404-left{
+    display: flex;
+    flex-direction: column;
+    color: rgb(79, 78, 78);
+    gap:10px;
+}
+
+.error404-oops{
+    font-size: 150px;
+    font-weight: bold;
+
+}
+.error404-info{
+    font-size: 30px;
+}
+.error404-code{
+    font-weight: bold;
+}
+
+.error404-link{
+    color: rgb(8, 108, 107);
+    cursor: pointer;
+}
+

@@ -58,20 +58,20 @@
 
 /* .profile-dropdown a:hover {background-color: #f1f1f1} */
 
-.profile-dropdown:hover{
-    /* color:white; */
-    cursor: pointer;
+/* .profile-dropdown:hover{
     
-}
+    
+} */
 
 .topleftmenulist {
     padding: 15px;
     margin-left: 0px;
-    background-color: white;
+    /* background-color: white; */
 }
 
-.topleftmenulist:hover{
-    background-color: rgb(128, 128, 128,10%);
+.live:hover{
+    background-color: rgb(128, 128, 128,20%);
+    cursor: pointer;
 }
 
 .topleftlink{
@@ -91,4 +91,12 @@
 
 .top{
     font-weight: bold;
+}
+
+.out{
+    cursor: pointer;
+}
+
+.out:hover{
+    background-color: rgb(128, 128, 128,20%);
 }

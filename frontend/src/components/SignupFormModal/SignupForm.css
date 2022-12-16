@@ -11,6 +11,9 @@
     gap:5px;
     border-radius: 10px;
     font-family: 'Figtree';
+    padding-left: 30px;
+    padding-right: 30px;
+    overflow: auto;
  }
 
  .signupbt{

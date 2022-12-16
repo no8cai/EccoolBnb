@@ -6,11 +6,13 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const history=useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -37,6 +39,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    history.push("/")
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -53,20 +56,20 @@ function ProfileButton({ user }) {
             <div className="topleftmenulist top">{user.username}</div>
             <div className="topleftmenulist top">{user.firstName} {user.lastName}</div>
             <div className="topleftmenulist top">{user.email}</div>
-            <div className="topleftmenulist"><NavLink to={`/hosting`} className="topleftlink top">Manage Listings</NavLink></div>
-            <div className="topleftmenulist"><NavLink to={`/hosting/reviews`} className="topleftlink top">Manage Reviews</NavLink></div>
-            <div onClick={logout} className="topleftmenulist logout">Log Out</div>
+            <div className="topleftmenulist live"><NavLink to={`/hosting`} className="topleftlink top">Manage Listings</NavLink></div>
+            <div className="topleftmenulist live"><NavLink to={`/hosting/reviews`} className="topleftlink top">Manage Reviews</NavLink></div>
+            <div onClick={logout} className="topleftmenulist logout live">Log Out</div>
           </>
         ) : (
           <>
             <OpenModalMenuItem
-              itemStyle={"topleftmenulist top"}
+              itemStyle={"topleftmenulist top out"}
               itemText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
             <OpenModalMenuItem
-              itemStyle={"topleftmenulist logout"}
+              itemStyle={"topleftmenulist logout out"}
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
