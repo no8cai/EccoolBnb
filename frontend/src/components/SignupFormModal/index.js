@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
+import { useHistory } from "react-router-dom";
 
 function SignupFormModal() {
 
@@ -15,7 +16,7 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
-
+  const history=useHistory();
 
 
   useEffect(() => {
@@ -42,18 +43,18 @@ function SignupFormModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (errors.length) return alert(`Cannot Submit`);
+    if (errors.length) return;
 
       setErrors([]);
-
+      const temperror=[]
       return dispatch(sessionActions.signup({ email, username, firstName, lastName, password }))
         .then(closeModal)
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+        .then(history.push("/"))
+        .catch((err)=>{
+          temperror.push("Creating process in not complete, error occurs")
+          setErrors(temperror)
+          return
         });
-
-    // return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
   return (
@@ -66,7 +67,7 @@ function SignupFormModal() {
            <div className='signup-errorload'>
            <div className="signup-erroricon"><i className="fa-solid fa-circle-exclamation"/></div>
            <div className='signup-errorinfo'>
-           <div className="signup-errortile">Please try again</div>
+           <div className="signup-errortile">Sign up validation</div>
            
            <div className='singup-errortop'>
                 {errors.map((error) => (

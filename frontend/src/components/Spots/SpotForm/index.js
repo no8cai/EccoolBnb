@@ -59,7 +59,7 @@ const SpotForm=({spot,formType})=>{
       if(city.length<=0){errors.push("Listing's city field is required");}
       if(state.length<=0){errors.push("Listing's state field is required");}
       if(country.length<=0){errors.push("Listing's country field is required");}
-      if(Number.isNaN(price)){errors.push("Listing's price must be a number");}
+      if(isNaN(price)){errors.push("Listing's price must be a number");}
       else if(price<=0){errors.push("Listing's price must be greater than 0");}
       if(description.length<=0){errors.push("Listing's description field is required");}
       
@@ -85,7 +85,7 @@ const SpotForm=({spot,formType})=>{
           dispatch(fetchCreateSpot(tempSpot,tempImage))
           .then(history.push(`/`))
           .catch((err)=>{
-            errors.push(`The process is not complete, error occurs`)
+            errors.push(`Creating process is not complete, please check your input`)
             setValidationErrors(errors)
           
           });
@@ -94,7 +94,7 @@ const SpotForm=({spot,formType})=>{
           dispatch(fetchEditSpot(tempSpot))
           .then(history.push(`/`))
           .catch((err)=>{
-            errors.push(`The process is not complete, error occurs`)
+            errors.push(`Editing process is not complete, please check your input`)
             setValidationErrors(errors)
         
           });
@@ -108,6 +108,8 @@ const SpotForm=({spot,formType})=>{
         <div className='spotform-title'><h2>{formType}</h2></div>
         <form className='spotform-form' onSubmit={handleSubmit}>
           <div className='spotform-neweditspot'>
+
+          <div className='spotform-listitem'>
           <label>
           Choose your listing's favorite name
           </label>
@@ -117,8 +119,9 @@ const SpotForm=({spot,formType})=>{
           type="text"
           name="name"
           onChange={(e) => setName(e.target.value)}
-          value={name}/>
+          value={name}/></div>
          
+         <div className='spotform-listitem'>
          <label>
           Input your listing's address
           </label>
@@ -128,8 +131,9 @@ const SpotForm=({spot,formType})=>{
           type="text"
           name="address"
           onChange={(e) => setAddress(e.target.value)}
-          value={address}/>
+          value={address}/></div>
          
+         <div className='spotform-listitem'>
          <label>Input your listing's city</label>
           <input
           className='input'
@@ -137,9 +141,9 @@ const SpotForm=({spot,formType})=>{
           type="text"
           name="city"
           onChange={(e) => setCity(e.target.value)}
-          value={city}/>
+          value={city}/></div>
          
-
+         <div className='spotform-listitem'>
          <label>
          Input your listing's state
           </label>
@@ -149,8 +153,9 @@ const SpotForm=({spot,formType})=>{
           type="text"
           name="state"
           onChange={(e) => setState(e.target.value)}
-          value={state}/>
+          value={state}/></div>
          
+         <div className='spotform-listitem'>
          <label>
          Input your listing's country</label>
           <input
@@ -159,8 +164,9 @@ const SpotForm=({spot,formType})=>{
           type="text"
           name="country"
           onChange={(e) => setCountry(e.target.value)}
-          value={country}/>
+          value={country}/></div>
          
+         <div className='spotform-listitem'>
          <label>
          Input your listing's address price</label>
           <input
@@ -169,8 +175,9 @@ const SpotForm=({spot,formType})=>{
           type="flot"
           name="price"
           onChange={(e) => setPrice(e.target.value)}
-          value={price}/>
+          value={price}/></div>
          
+         <div>
          <label>
          Input your listing's description</label>
           <textarea
@@ -179,11 +186,13 @@ const SpotForm=({spot,formType})=>{
           type="text"
           name="description"
           onChange={(e) => setDescription(e.target.value)}
-          value={description}/>
+          value={description}/></div>
          </div>
-         <div className='spotform-neweditspot'>
+
          {formType==="Create Spot" && (
-          <>
+          <div className='spotform-neweditspot'>
+      
+          <div className='spotform-listitem'>
           <label>
           Input your listing's image link</label>
           <textarea
@@ -193,7 +202,7 @@ const SpotForm=({spot,formType})=>{
           type="text"
           name="url"
           onChange={(e) => setUrl(e.target.value)}
-          value={url}/>
+          value={url}/></div>
 
           <label>Choose your listing image privacy</label>
           <label>
@@ -216,29 +225,28 @@ const SpotForm=({spot,formType})=>{
           />
           I Do Not Want to Share My Image to Public
           </label>
-          </>
+          </div>
+          )}
+          
+         <input type="submit" value={formType} className="spotbutton" disabled={!!validationErrors.length}/>
+         </form>
+         </div>
+
+         <div className='spotform-errorsec'>
+         <div className='error-title'>
+         <i className="fa-solid fa-circle-exclamation ertlbu" />
+         <h4>Validation Checking List</h4>
+         </div>
+          {!!validationErrors.length && (
+          <div className='spotform-errortable'>
+          <div className='spotform-error'>
+          {validationErrors.map((error) => (
+          <div key={error} className="spotform-errortext">{error}</div>
+                       ))}
+          </div>
+          </div>
           )}
           </div>
-
-         <input type="submit" value={formType} className="spotbutton" disabled={!!validationErrors.length}/>
-        </form>
-        </div>
-                  <div className='spotform-errorsec'>
-                  <div className='error-title'>
-                  <i className="fa-solid fa-circle-exclamation ertlbu" />
-                  <h4>Validation Checking List</h4>
-                  </div>
-                  {!!validationErrors.length && (
-                  <div className='error-top'>
-
-                  <ul className='spotform-errors'>
-                      {validationErrors.map((error) => (
-                      <div key={error}>{error}</div>
-                       ))}
-                  </ul>
-                  </div>
-                   )}
-                  </div>
     </div>
     )
 }

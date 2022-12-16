@@ -41,8 +41,7 @@ function LoginFormModal() {
         temperror.push("internal error")
         setErrors(temperror)
         return
-      }
-      );
+      });
  
   };
 
@@ -90,7 +89,6 @@ function LoginFormModal() {
         <label className="login-text">
           Username</label>
           <input
-            
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}

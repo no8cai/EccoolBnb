@@ -9,7 +9,7 @@ const Reviews =({spotreviews})=>{
                 <i className="fa-regular fa-circle-user" />
                 <div className="username">
                 <h3 className="name">{User.firstName}</h3>
-                <div>{createdAt.slice(0,10)}</div>
+                <div className="review-date">{createdAt.slice(0,10)}</div>
                </div>
                </div>
                <div className="review">{review}</div>

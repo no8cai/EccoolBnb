@@ -21,6 +21,7 @@ div.userinfo i{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
 }
 
 .review{
@@ -33,40 +34,22 @@ div.userinfo i{
 .rev{
     display: flex;
     flex-wrap: wrap;
+    padding: 10px;
+    width: 50vw;
 }
 
-.reviewform{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap:10px;
-    width: 80%;
-}
+
 
 .revi{
     border: 0px solid black;
     height: 50px;
 }
 
-.reviewsection{
-    height: 80vh;
-    width: 30vw;
+.reviewform-section{
+    width: 500px;
     font-family: 'Figtree';
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-}
 
-.reviewform-title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap:10px;
-    margin-left: 2%;
-    margin-right:2%;
 }
 
 .reviewform-errorsec{
@@ -78,3 +61,63 @@ div.userinfo i{
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
+
+.reviewform-title{
+    text-align: center;
+    font-family: 'Figtree';
+    color: rgb(0, 0, 0,70%);
+    border-bottom: 1px solid rgb(0, 0, 0,10%);
+    padding-bottom: 20px;
+}
+
+.reviewform-form{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap:10px;
+    overflow: auto;
+}
+
+ .reviewform-review{
+    border-bottom: 1px solid rgb(0, 0, 0,50%);
+    display: flex;
+    flex-direction: column;
+ }
+ .reviewform-infomation{
+    display: flex;
+    flex-direction: column;
+    border:1px solid rgb(0, 0, 0,50%);
+    border-radius: 10px;
+    padding: 10px;
+ }
+
+ .reviewform-text{
+    font-size:13px;
+    color: grey;
+ }
+
+ .reviewform-errorload{
+    border:1px solid rgb(0, 0, 0,20%);
+    border-radius: 10px;
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+ }
+
+ div.reviewform-erroricon i{
+    font-size: 40px;
+    color: #c13515;
+ }
+
+ .reviewform-errortile{
+    font-weight: bold;
+    font-size: 15px;
+ }
+
+ .reviewform-errortext{
+    font-size: 13px;
+    color: grey;
+ }
+ /* .reviewform-errorinfo{
+
+ } */

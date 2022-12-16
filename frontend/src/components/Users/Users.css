@@ -11,7 +11,7 @@
     padding-left: 20px;
     padding-right: 20px;
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0,20%);
     height: 40px;
 }
 .listbutton:hover{
@@ -48,7 +48,7 @@
 }
 
 .managebox{
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0,20%);
     border-radius: 10px;
     width: 300px;
     padding: 10px;
