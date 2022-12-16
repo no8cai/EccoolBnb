@@ -30,7 +30,7 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
     const [validationErrors, setValidationErrors] = useState([]);
 
 
-    useEffect(() => {
+      useEffect(() => {
       if (!review&&!stars) {
         setValidationErrors([]);
         return;

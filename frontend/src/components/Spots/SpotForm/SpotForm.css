@@ -1,13 +1,8 @@
-.spotform{
+.spotform-form{
     display: flex;
     flex-direction:column; 
+    padding-top: 10px;
     gap:10px;
-    justify-content: center;
-    align-items:center; 
-    padding-left: 5vw;
-    padding-right: 5vw;
-    width: 25vw;
-    margin-bottom: 50px;
 }
 .input{
     width: 100%;
@@ -37,13 +32,11 @@
 }
 
 .spotform-errorsec{
-    border: 1px solid rgb(221, 221, 221);
     width: 20vw;
     margin-top: 60px;
     margin-bottom: 60px;
     border-radius: 20px;
     padding: 24px;
-    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 
 .ertlbu{
@@ -61,3 +54,18 @@
     gap:10px
 }
 
+.spotform-title{
+    text-align: center;
+    font-family: 'Figtree';
+    color: rgb(0, 0, 0,70%);
+    border-bottom: 1px solid rgb(0, 0, 0,10%);
+    padding-bottom: 20px;
+ }
+
+.spotform-neweditspot{
+    display: flex;
+    flex-direction: column;
+    border:1px solid rgb(0, 0, 0,30%);
+    border-radius: 10px;
+    padding: 10px;
+}

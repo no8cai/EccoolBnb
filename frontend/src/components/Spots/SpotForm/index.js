@@ -79,22 +79,35 @@ const SpotForm=({spot,formType})=>{
 
         const tempSpot = { ...spot, name, address,city,state,country,price,description };
         const tempImage={url,preview};
+        const errors=[]
 
         if(formType==="Create Spot"){
-          dispatch(fetchCreateSpot(tempSpot,tempImage))       
+          dispatch(fetchCreateSpot(tempSpot,tempImage))
+          .then(history.push(`/`))
+          .catch((err)=>{
+            errors.push(`The process is not complete, error occurs`)
+            setValidationErrors(errors)
+          
+          });
           }
         else if(formType==="Edit Spot"){
-          dispatch(fetchEditSpot(tempSpot));
+          dispatch(fetchEditSpot(tempSpot))
+          .then(history.push(`/`))
+          .catch((err)=>{
+            errors.push(`The process is not complete, error occurs`)
+            setValidationErrors(errors)
+        
+          });
         }  
-
-        setValidationErrors([]);
-        history.push(`/`);
+        // setValidationErrors([]) 
       };
 
     return(
       <div className='spotform-section'>
-        <form className='spotform' onSubmit={handleSubmit}>
-          <h3>{formType}</h3>
+        <div className='spotform-leftsec'>
+        <div className='spotform-title'><h2>{formType}</h2></div>
+        <form className='spotform-form' onSubmit={handleSubmit}>
+          <div className='spotform-neweditspot'>
           <label>
           Choose your listing's favorite name
           </label>
@@ -167,7 +180,8 @@ const SpotForm=({spot,formType})=>{
           name="description"
           onChange={(e) => setDescription(e.target.value)}
           value={description}/>
-        
+         </div>
+         <div className='spotform-neweditspot'>
          {formType==="Create Spot" && (
           <>
           <label>
@@ -199,13 +213,16 @@ const SpotForm=({spot,formType})=>{
           value={false}
           name="preview"
           checked={preview === "false"}
-        />
+          />
           I Do Not Want to Share My Image to Public
           </label>
           </>
           )}
+          </div>
+
          <input type="submit" value={formType} className="spotbutton" disabled={!!validationErrors.length}/>
         </form>
+        </div>
                   <div className='spotform-errorsec'>
                   <div className='error-title'>
                   <i className="fa-solid fa-circle-exclamation ertlbu" />

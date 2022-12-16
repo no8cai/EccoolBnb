@@ -24,10 +24,7 @@ function App() {
   return (
     <div className="rootchild">
       <Navigation isLoaded={isLoaded} />
-      {/* {isLoaded && (
-        <Switch>
-        </Switch>
-      )} */}
+      {isLoaded && (
       <Switch>
         <Route exact path={["/","/spots/:spotId"]}>
         <Spots/>
@@ -38,7 +35,8 @@ function App() {
         <Route>
           <ErrornotFind/>
         </Route>
-      </Switch> 
+        </Switch>
+        )}
     </div>
   );
 }

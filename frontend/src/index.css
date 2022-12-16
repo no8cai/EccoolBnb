@@ -8,3 +8,20 @@
     font-size: 14px;
     background-color: #fff;
 }
+
+input{
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+textarea{
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+
+#modal-content{
+    border-radius: 10px;
+ }

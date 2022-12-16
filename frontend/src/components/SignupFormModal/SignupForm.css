@@ -1,22 +1,73 @@
+.signup-secion{
+    font-family: 'Figtree';
+}
+
+
 .signupform {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding-bottom: 20px;
+    font-family: 'Figtree';
  }
 
- .signupcompo{
-    height: 90vh;
-    width: 30vw;
+ .signup-load{
+    width: 500px;
     padding: 10px;
     gap:5px;
     border-radius: 10px;
-    font-family: 'Figtree';
     padding-left: 30px;
     padding-right: 30px;
     overflow: auto;
  }
 
  .signupbt{
-
     height: 40px;
+ }
+ .signup-title{
+    text-align: center;
+    font-family: 'Figtree';
+    color: rgb(0, 0, 0,70%);
+    border-bottom: 1px solid rgb(0, 0, 0,10%);
+    padding-bottom: 20px;
+ }
+ .signup-information{
+    display: flex;
+    flex-direction: column;
+    border:1px solid rgb(0, 0, 0,50%);
+    border-radius: 10px;
+    padding: 10px;
+ }
+ .signup-infotop{
+    border-bottom: 1px solid rgb(0, 0, 0,50%);
+    display: flex;
+    flex-direction: column;
+ }
+ .signup-text{
+    font-size:13px;
+    color: grey;
+ }
+
+ .signup-errorload{
+    border:1px solid rgb(0, 0, 0,20%);
+    border-radius: 10px;
+    display: flex;
+    padding: 20px;
+    gap: 10px;
+    font-family: 'Figtree';
+ }
+
+div.signup-erroricon i{
+    font-size: 40px;
+    color: #c13515;
+}
+
+.signup-errortile{
+    font-weight: bold;
+    font-size: 15px;
+ }
+
+ .signup-errortext{
+    font-size: 13px;
+    color: grey;
  }

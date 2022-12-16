@@ -10,6 +10,7 @@ import OpenModalMenuItem from '../../Navigation/OpenModalMenuItem';
 import { fetchSpotReivews } from '../../../store/review';
 import { useHistory } from 'react-router-dom';
 import CreateSpotReview from '../../Reviews/CreateSpotReview';
+import OpenModalButton from '../../OpenModalButton';
 
 const SingleSpot = () => {
 
@@ -17,15 +18,18 @@ const SingleSpot = () => {
     const singleSpot = useSelector(state=>state.spot.singlespot);
     const spotreviewsObj = useSelector(state=>state.review.spot);
     const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+spotId});
+    const currentUser = useSelector(state=>state.session.user);
     
 
 
     const [showMenu, setShowMenu] = useState(false);
-    // const [isLoading,SetIsloading]=useState(true)
 
+    // const [isLoading,SetIsloading]=useState(true)
+    // if(!currentUser){setShowButton(false)}
     const dispatch = useDispatch();
     const history=useHistory(); 
     
+
     useEffect(() => {
     //   SetIsloading(true)
       dispatch(fetchOneSpot(spotId))
@@ -43,6 +47,7 @@ const SingleSpot = () => {
         history.push('/createreview')
     }
 
+    const buttonClassName = "addreview" + ((currentUser!==null) ? "" : " hide");
     
     return (
       <div className='spotpage'>
@@ -78,10 +83,12 @@ const SingleSpot = () => {
           <div className='right-top'>
           <div className='right-left'><h3>{`$${singleSpot.price}`}</h3><div>night</div></div> 
           <div className='right-right'><i className="fas fa-star" /><div>{singleSpot.avgRating}</div></div>
-          </div>
-          <OpenModalMenuItem
-               itemStyle="addreview"
-               itemText={`Add Reviews`} 
+          
+         </div>
+         <OpenModalButton
+               buttonDisable={true}
+               buttonStyle={buttonClassName}
+               buttonText={`Add Reviews`} 
                onItemClick={closeMenu}
                modalComponent={<CreateSpotReview spotId={spotId} closeMenu={closeMenu}/>}
              />
@@ -94,13 +101,6 @@ const SingleSpot = () => {
         </div>
            <Reviews spotreviews={spotreviews}/>
         </div>  
-        {/* <img
-          src={singleArticle?.imageUrl}
-          alt={singleArticle?.title}
-        /> */}
-         {/* <Route path={"/spots/:spotId/reviews"}>
-         <Reviews/>
-        </Route> */}
       </div>
 
     );
