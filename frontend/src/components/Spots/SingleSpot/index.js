@@ -64,9 +64,9 @@ const SingleSpot = () => {
         </div>
         <div>{`${singleSpot.city},${singleSpot.state},${singleSpot.country}`}</div>
         </div>
-        <div>
+        <div className='singlespot-imgsection'>
             {singleSpot.SpotImages.map(({id,url})=>(
-            <div key={id}>
+            <div key={id} className="singlespot-images">
               <img src={url}/>
             </div>
              ))}

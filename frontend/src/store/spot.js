@@ -180,8 +180,8 @@ const spotReducer = (state = initialState, action) => {
         return newState
       case EDIT_SPOT:
         newState = {...state,allspots:{...state.allspots},userspots:{...state.userspots}}
-        newState.allspots[action.spot.id]=action.spot
-        newState.userspots[action.spot.id]=action.spot
+        newState.allspots[action.spot.id]={...newState.allspots[action.spot.id],...action.spot}
+        newState.userspots[action.spot.id]={...newState.allspots[action.spot.id],...action.spot}
         return newState
       case DELETE_SPOT:
         newState = {...state,allspots:{...state.allspots},userspots:{...state.userspots}}
