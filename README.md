@@ -1,4 +1,4 @@
-# EccollBnb project
+# EccoolBnb project
 
 ## About EccoolBnb
 
@@ -6,9 +6,9 @@
 
 ## EccoolBnb wiki documents
 
-[Feature List](https://github.com/no8cai/EccoolBnb/wiki/AirBnb-Store-Shape)
-[AirBnb-Store-Shape](https://github.com/no8cai/AirBnB-project/wiki/AirBnb-Store-Shape)
-[Backend Documentation](https://github.com/no8cai/EccoolBnb/wiki/Backend-Documentation)
+*[Feature List](https://github.com/no8cai/EccoolBnb/wiki/Eccoolbnb-features)
+*[AirBnb-Store-Shape](https://github.com/no8cai/AirBnB-project/wiki/AirBnb-Store-Shape)
+*[Backend Documentation](https://github.com/no8cai/EccoolBnb/wiki/Backend-Documentation)
 
 ## The tech invoved
 
