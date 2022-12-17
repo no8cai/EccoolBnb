@@ -1,9 +1,8 @@
-## Documentation
-
+# Backend Documentation
 
 ## Database Schema Design
 
-![airbnb](images/airbnb_dbdiagram.png)
+![Eccoolbnb](../images/airbnb_dbdiagram.png)
 
 ## API Documentation
 
