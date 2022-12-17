@@ -110,7 +110,7 @@ router.get('/current',restoreUser,requireAuth,async (req, res) => {
     spot.Reviews.forEach(el=>{
         result+=el.stars
     })
-    spot.avgRating=result/spot.Reviews.length
+    spot.avgRating=(result/spot.Reviews.length).toFixed(1)
 
     spot.SpotImages.forEach(image=>{
         if(image.preview===true){
