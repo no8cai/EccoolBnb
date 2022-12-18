@@ -6,6 +6,7 @@ const SpotList = ({spotsObj}) => {
 
   const spots = Object.values(spotsObj);
 
+
   const avragedete =(input)=>input==="NaN"?"":input;
   
     return (
