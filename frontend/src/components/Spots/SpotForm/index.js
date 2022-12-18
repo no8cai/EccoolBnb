@@ -51,7 +51,7 @@ const SpotForm=({spot,formType})=>{
         setValidationErrors([]);
         return;
       }
-
+      
       const errors =[];
       if(name.length<=0){errors.push("Listing's name field is required");}
       else if(name.length>=50){errors.push("Listing's name must be less than 50 characters")}
@@ -61,6 +61,7 @@ const SpotForm=({spot,formType})=>{
       if(country.length<=0){errors.push("Listing's country field is required");}
       if(isNaN(price)){errors.push("Listing's price must be a number");}
       else if(price<=0){errors.push("Listing's price must be greater than 0");}
+      else if(!(/^\d+(\.\d{1,2})?$/.test(price))){errors.push("Listing's price must be within 2 digits");}
       if(description.length<=0){errors.push("Listing's description field is required");}
       
       if(formType==="Create Spot"){
@@ -215,7 +216,7 @@ const SpotForm=({spot,formType})=>{
           name="preview"
           checked={preview === "true"}
           />
-          I Agree to Share my Image to Public
+          I Agree to Share My Image to Public
           </label>
           <label>
           <input

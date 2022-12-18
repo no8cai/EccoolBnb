@@ -13,11 +13,12 @@ const Spots =()=>{
     const dispatch = useDispatch();
     
     const spotsObj = useSelector(state=>state.spot.allspots);
-    
+    const spotreviewsObj = useSelector(state=>state.review.spot);
+    //spotreviewsObj.length
   
     useEffect(() => {
       dispatch(fetchSpots());
-    }, [dispatch,spotsObj.length]);
+    }, [dispatch,spotsObj.length,spotreviewsObj.length]);
 
 
  return(

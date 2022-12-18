@@ -54,7 +54,7 @@ const ListManage=()=>{
                        <div><i className="fas fa-star" />{avgRating}</div>
                     </div>
                     <div>
-                       {`$${price} night`}
+                       {`$${parseFloat(price).toFixed(2)} night`}
                     </div>
                     </NavLink>
                 </div>

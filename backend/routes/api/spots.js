@@ -62,9 +62,11 @@ Spots.forEach(spot=>{
 
     let result=0;
     spot.Reviews.forEach(el=>{
-        result+=el.stars
+       result+=el.stars
     })
-    spot.avgRating=result/spot.Reviews.length
+    
+    spot.avgRating=(result/spot.Reviews.length).toFixed(1)
+    if(!spot.avgRating){spot.avgRating=""}
 
 
     spot.SpotImages.forEach(image=>{
@@ -112,7 +114,7 @@ router.get('/current',restoreUser,requireAuth,async (req, res) => {
     })
     spot.avgRating=(result/spot.Reviews.length).toFixed(1)
 
-    spot.SpotImages.forEach(image=>{
+    spot.SpotImages.find(image=>{
         if(image.preview===true){
             spot.previewImage=image.url
         }
@@ -217,7 +219,7 @@ router.get('/:spotId',async (req,res,next) => {
         result+=el.stars
     })
     oneSpot.numReviews=oneSpot.Reviews.length
-    oneSpot.avgRating=result/oneSpot.Reviews.length
+    oneSpot.avgRating=(result/oneSpot.Reviews.length).toFixed(1)
     oneSpot.Owner=oneSpot.User
 
 

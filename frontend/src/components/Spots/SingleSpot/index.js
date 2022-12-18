@@ -42,6 +42,7 @@ const SingleSpot = () => {
     // if(isLoading) return 'isloading'
 
     const closeMenu = () => setShowMenu(false);
+    const avragedete =(input)=>input==="NaN"?"":input;
     
     const createEvents=()=>{
         history.push('/createreview')
@@ -65,10 +66,10 @@ const SingleSpot = () => {
         <div>{`${singleSpot.city},${singleSpot.state},${singleSpot.country}`}</div>
         </div>
         <div className='singlespot-imgsection'>
-            {singleSpot.SpotImages.map(({id,url})=>(
-            <div key={id} className="singlespot-images">
-              <img src={url}/>
-            </div>
+            {singleSpot.SpotImages.slice(0,5).map(({id,url},index)=>(
+            // <div key={id} className={`singlespot-images images${index}`}>
+              <img className={`siglespot-image image${index}`} src={url}/>
+            // </div>
              ))}
         </div>
         <div className='infosection'>
@@ -96,7 +97,7 @@ const SingleSpot = () => {
         </div>
         <div className='reviewfooter'>
         <div className='reviewbar'>
-           <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
+           <div><i className="fas fa-star" />{avragedete(singleSpot.avgRating)}</div>
            <div>{`·${singleSpot.numReviews} reviews`}</div>
         </div>
            <Reviews spotreviews={spotreviews}/>

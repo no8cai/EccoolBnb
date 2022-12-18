@@ -15,24 +15,24 @@
 ## The tech invoved
 
 #### General coding:
-JavaScript
+* JavaScript
 
 #### Backend:
-Sequelize
-Express
+* Sequelize
+* Express
 
 #### Frontend:
-React
-Redux
-HTML
-CSS
+* React
+* Redux
+* HTML
+* CSS
 
 #### Database:
-Sqlite3(Development)
-PostgreSQL(Production)
+* Sqlite3(Development)
+* PostgreSQL(Production)
 
 #### Website provider:
-Render
+* Render
 
 ## Landing Page
 

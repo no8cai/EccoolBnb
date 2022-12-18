@@ -28,7 +28,7 @@ module.exports = {
           address: '12302 Seven Lake',
           city:'The new york city',
           state:'New York',
-          country:'USA',
+          country:'United States',
           lat: 40.788709,
           lng: -74.45117,
           name: 'second demo house',
@@ -49,15 +49,15 @@ module.exports = {
          },
          {
           ownerId: 1,
-          address: '1455 Sant Louis',
-          city:'Las vegas',
-          state:'Navada',
+          address: '1001 Midtown Manhattan',
+          city:'New York City',
+          state:'New York',
           country:'United States',
           lat: 33.92905,
           lng: -118.30328,
-          name: 'fourth demo house',
-          description:'condo',
-          price:3500
+          name: 'Stark Tower Complex',
+          description:'Tower',
+          price:500000
          }
     ], {});
   },
@@ -66,7 +66,7 @@ module.exports = {
      options.tableName = "Spots";
      const Op = Sequelize.Op;
      await queryInterface.bulkDelete(options, {
-      address: { [Op.in]: ['22001 Grand Cove Court', '22002 Grand Cove Court', 'F22003 Grand Cove Court'] }
+      address: { [Op.in]: ['22001 Grand Cove Court', '12302 Seven Lake', '5490 Cinco Ranch','1001 Midtown Manhattan'] }
      }, {});
   }
 };

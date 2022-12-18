@@ -25,6 +25,7 @@
     display: flex;
     border-bottom: 2px solid rgb(0, 0, 0,10%);
     padding-bottom: 5vh;
+    justify-content: space-between;
 }
 
 .info-title{
@@ -40,6 +41,7 @@
     border-radius: 12px;
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+    margin-top: 20px;
 }
 
 .right-right{
@@ -84,4 +86,57 @@
 
 .hide{
     display: none;
+}
+
+.singlespot-imgsection{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-auto-rows: minmax(100px,auto);
+    grid-template-areas: 
+    "image0 image1 image3"
+    "image0 image2 image4"
+    ;
+    gap: 2vh;
+    overflow: hide;
+}
+
+.siglespot-image{
+    object-fit: cover;
+    /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
+}
+
+.image0{
+    grid-area: image0;
+    /* height: 70vh; */
+    width: 32vw;
+    height: 52vh;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.image1{
+    grid-area: image1;
+    height: 25vh;
+    width: 18vw;
+}
+
+.image2{
+    grid-area: image2;
+    height: 25vh;
+    width: 18vw;
+}
+
+.image3{
+    grid-area: image3;
+    height: 25vh;
+    width: 18vw;
+    border-top-right-radius: 20px;
+}
+
+.image4{
+    grid-area: image4;
+    height: 25vh;
+    width: 18vw;
+    border-bottom-right-radius: 20px;
 }

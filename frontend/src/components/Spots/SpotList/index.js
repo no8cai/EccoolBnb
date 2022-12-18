@@ -6,6 +6,8 @@ const SpotList = ({spotsObj}) => {
 
   const spots = Object.values(spotsObj);
 
+  const avragedete =(input)=>input==="NaN"?"":input;
+  
     return (
       <div>
         <div className='listitem'>
@@ -14,7 +16,7 @@ const SpotList = ({spotsObj}) => {
                 <div className='itemimg'><img src={previewImage} className="image"/></div>
                 <div className='address'>
                    <div>{`${city},${country}`}</div>
-                   <div><i className="fas fa-star" />{avgRating}</div>
+                   <div><i className="fas fa-star" />{avragedete(avgRating)}</div>
                 </div>
                 <div className='price'>
                    {`$${parseFloat(price).toFixed(2)} night`}
