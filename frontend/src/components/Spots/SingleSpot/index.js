@@ -68,7 +68,7 @@ const SingleSpot = () => {
         <div className='singlespot-imgsection'>
             {singleSpot.SpotImages.slice(0,5).map(({id,url},index)=>(
             // <div key={id} className={`singlespot-images images${index}`}>
-              <img className={`siglespot-image image${index}`} src={url}/>
+              <img key={id} className={`siglespot-image image${index}`} src={url}/>
             // </div>
              ))}
         </div>

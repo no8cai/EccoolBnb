@@ -1,11 +1,31 @@
 import { Route, Switch, NavLink } from 'react-router-dom';
 import './SpotList.css';
 import SingleSpot from '../SingleSpot';
+import configureStore from '../../../store';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchSpots } from '../../../store/spot';
 
-const SpotList = ({spotsObj}) => {
+const SpotList = () => {
+
+
+  const dispatch = useDispatch();
+    
+  const spotsObj = useSelector(state=>state.spot.allspots);
+  // const spotreviewsObj = useSelector(state=>state.review.spot);
+  //spotreviewsObj.length
+
+  useEffect(() => {
+    dispatch(fetchSpots());
+  }, [dispatch,spotsObj.length]);
 
   const spots = Object.values(spotsObj);
 
+  // const store = configureStore();
+  // const temp=store.getState();
+
+  // console.log(temp.spot);
 
   const avragedete =(input)=>input==="NaN"?"":input;
   
