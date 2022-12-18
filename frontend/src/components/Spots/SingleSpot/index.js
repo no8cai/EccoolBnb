@@ -54,7 +54,7 @@ const SingleSpot = () => {
       <div className='spotpage'>
         <h1>{singleSpot.name}</h1>
         <div className='spotinfo'>
-        <div><i className="fas fa-star" />{singleSpot.avgRating}</div>
+        <div><i className="fas fa-star" />{avragedete(singleSpot.avgRating)}</div>
         <div>
           <OpenModalMenuItem
                itemText={`${singleSpot.numReviews} reviews`} 

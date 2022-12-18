@@ -84,11 +84,11 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
         
         <form className='reviewform-form' onSubmit={handleSubmit}>
 
-          {/* {!!validationErrors.length &&  */}
+          {!!validationErrors.length && 
         <div className="reviewform-errorload">
         <div className="reviewform-erroricon"><i className="fa-solid fa-circle-exclamation" /></div>
         <div className="reviewform-errorinfo">
-        <div className="reviewform-errortile">Let's try that again</div>
+        <div className="reviewform-errortile">Input validation</div>
         <div>
           {validationErrors.map((error, idx) => (
             <div key={idx} className="reviewform-errortext">{error}</div>
@@ -96,7 +96,7 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
         </div>
         </div>
         </div>
-        {/* } */}
+        }
           <div className="reviewform-infomation">
           <div className="reviewform-review">
           <label className="reviewform-text">
