@@ -53,7 +53,7 @@ For more usage image guild please click [here](https://github.com/no8cai/EccoolB
 - [x] Properties listing
 - [x] Reviews and rating
 
-### future features
+### Future features
 - [ ] Review images add-on
 - [ ] Booking
 - [ ] Google map link
@@ -65,7 +65,9 @@ This is an instructions on setting up the project locally. To get a local copy u
 ### Installation
 
 1. Clone the repor
-> https://github.com/no8cai/EccoolBnb.git
+```
+git clone https://github.com/no8cai/EccoolBnb.git
+```
 
 2. Populate the .env file based on the example below:
 ```
