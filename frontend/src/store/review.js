@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // review types
 const GET_SPOTREVIEWS = 'reviews/getSpotReviews';
 const GET_USERREVIES = 'reviews/getUserReviews';
+const DELETE_USERREVIES = 'reviews/deleteUserReviews';
 const CREAT_SPOTREVIEW='reviews/createSpotReview'
 const EDIT_REVIEW='reviews/editReview'
 const DELETE_REVIEW='reviews/deleteReview'
@@ -21,6 +22,13 @@ export const userReviews = ({Reviews}) => {
       Reviews
     };
   };
+
+export const deleteUserReviews = () => {
+    return {
+      type: DELETE_USERREVIES,
+    };
+  };
+
 
 export const createSpotReview = (review) => {
     return {
@@ -63,6 +71,10 @@ export const fetchUserReivews = () => async (dispatch) => {
     }
 };
 
+// export const fetchDeleteUserReivews = () => async (dispatch) => {
+//   dispatch(deleteUserReviews());
+// };
+
 export const fetchCreateReview = (spotId,review) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`,{
       method: 'POST',
@@ -73,10 +85,6 @@ export const fetchCreateReview = (spotId,review) => async (dispatch) => {
       const created = await response.json();
       dispatch(createSpotReview(created));
     }
-    // }else{
-    //   const error = await response.json();
-    //   console.log(error)
-    // }
   };
 
 export const fetchEditReview = (review) => async (dispatch) => {
@@ -119,6 +127,10 @@ const reviewReducer = (state = initialState, action) => {
         action.Reviews.forEach(review => {
         newState.user[review.id] = review
         })
+        return newState;
+      case DELETE_USERREVIES:
+        newState = {...state,user:{...state.user}}
+        newState.user={}
         return newState;
       case CREAT_SPOTREVIEW:
         newState = {...state,spot:{...state.spot}}

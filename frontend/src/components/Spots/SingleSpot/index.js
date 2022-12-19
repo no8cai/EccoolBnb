@@ -1,6 +1,5 @@
 import { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Route, Switch, NavLink } from 'react-router-dom';
 import { fetchOneSpot } from '../../../store/spot';
 
 import { useParams } from 'react-router-dom';
@@ -11,6 +10,7 @@ import { fetchSpotReivews } from '../../../store/review';
 import { useHistory } from 'react-router-dom';
 import CreateSpotReview from '../../Reviews/CreateSpotReview';
 import OpenModalButton from '../../OpenModalButton';
+import { useModal } from '../../../context/Modal';
 
 const SingleSpot = () => {
 
@@ -19,7 +19,7 @@ const SingleSpot = () => {
     const spotreviewsObj = useSelector(state=>state.review.spot);
     const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+spotId});
     const currentUser = useSelector(state=>state.session.user);
-    
+    const {closeModal } = useModal();
 
 
     const [showMenu, setShowMenu] = useState(false);
@@ -44,9 +44,6 @@ const SingleSpot = () => {
     const closeMenu = () => setShowMenu(false);
     const avragedete =(input)=>input==="NaN"?"":input;
     
-    const createEvents=()=>{
-        history.push('/createreview')
-    }
 
     const buttonClassName = "addreview" + ((currentUser!==null) ? "" : " hide");
     
@@ -83,7 +80,7 @@ const SingleSpot = () => {
         <div className='info-right'>
           <div className='right-top'>
           <div className='right-left'><h3>{`$${parseFloat(singleSpot.price).toFixed(2)}`}</h3><div>night</div></div> 
-          <div className='right-right'><i className="fas fa-star" /><div>{singleSpot.avgRating}</div></div>
+          <div className='right-right'><i className="fas fa-star" /><div>{avragedete(singleSpot.avgRating)}</div></div>
           
          </div>
          <OpenModalButton

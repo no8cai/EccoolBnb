@@ -13,19 +13,14 @@ const SpotList = () => {
   const dispatch = useDispatch();
     
   const spotsObj = useSelector(state=>state.spot.allspots);
-  // const spotreviewsObj = useSelector(state=>state.review.spot);
-  //spotreviewsObj.length
+  const spotreviewsObj = useSelector(state=>state.review.spot);
 
   useEffect(() => {
     dispatch(fetchSpots());
-  }, [dispatch,spotsObj.length]);
+  }, [dispatch,spotsObj.length,spotreviewsObj.length]);
 
   const spots = Object.values(spotsObj);
 
-  // const store = configureStore();
-  // const temp=store.getState();
-
-  // console.log(temp.spot);
 
   const avragedete =(input)=>input==="NaN"?"":input;
   

@@ -7,6 +7,9 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { deleteUserSpots } from "../../store/spot";
+import { deleteUserReviews } from "../../store/review";
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -38,6 +41,8 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    dispatch(deleteUserSpots());
+    dispatch(deleteUserReviews());
     closeMenu();
     history.push("/")
   };

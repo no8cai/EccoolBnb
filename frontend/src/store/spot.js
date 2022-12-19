@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 //spot types
 const LOAD_SPOTS = 'spots/loadSpots';
 const GET_USERSPOTS = 'spots/getUserSpots'
+const DELETE_USERSPOTS='spots/deleteUserSpots'
 const GET_SINGLESPOT = 'spots/getSingleSpot';
 const CREATE_SPOT='spots/createSpot'
 const ADD_IMAGE='spots/addSpotImage'
@@ -22,6 +23,12 @@ export const getUserSpots = ({Spots}) => {
     return {
       type: GET_USERSPOTS,
       Spots
+    };
+  };
+
+export const deleteUserSpots = () => {
+    return {
+      type: DELETE_USERSPOTS,
     };
   };
 
@@ -77,6 +84,10 @@ export const fetchUserSpots = () => async (dispatch) => {
     dispatch(getUserSpots(spots));
     }
 };
+
+// export const fetchDeleteUserSpots = () => async (dispatch) => {
+//   dispatch(deleteUserSpots());
+// };
 
 export const fetchOneSpot = (id) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${id}`);
@@ -161,6 +172,10 @@ const spotReducer = (state = initialState, action) => {
         action.Spots.forEach(spot => {
         newState.userspots[spot.id] = spot
         })
+        return newState;
+      case DELETE_USERSPOTS:
+        newState = {...state,userspots:{...state.userspots}}
+        newState.userspots={}
         return newState;
       case GET_SINGLESPOT:
         newState = {...state,singlespot:{...state.singlespot}}

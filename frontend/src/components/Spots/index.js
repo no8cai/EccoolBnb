@@ -25,7 +25,7 @@ const Spots =()=>{
  
      <Switch>
      <Route exact path="/">
-     <SpotList spotsObj/>
+     <SpotList/>
      </Route>
      {/* <Route path="/spots/:spotId/reviews">
      <Reviews/>
