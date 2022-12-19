@@ -54,10 +54,10 @@ For more usage image guild please click [here](https://github.com/no8cai/EccoolB
 - [x] Reviews and rating
 
 ### future features
-- [] Review images add-on
-- [] Booking
-- [] Google map link
-- [] Messaging
+- [ ] Review images add-on
+- [ ] Booking
+- [ ] Google map link
+- [ ] Messaging
 
 ## Getting Started
 This is an instructions on setting up the project locally. To get a local copy up and running follow these simple example steps.
@@ -68,22 +68,31 @@ This is an instructions on setting up the project locally. To get a local copy u
 > https://github.com/no8cai/EccoolBnb.git
 
 2. Populate the .env file based on the example below:
-> PORT=8000
-> DB_FILE=db/dev.db
-> JWT_SECRET=«generate_strong_secret_here»
-> JWT_EXPIRES_IN=604800
-> SCHEMA=«custom_schema_name_here»
+```
+PORT=8000
+DB_FILE=db/dev.db
+JWT_SECRET=«generate_strong_secret_here»
+JWT_EXPIRES_IN=604800
+SCHEMA=«custom_schema_name_here»
+```
+
 Please make your own good JWT secret key and schema name
 
 3. Install NPM packages on both /fronted and /backend directory
->npm install
+```
+npm install
+```
 
 4. Migrate and Seed the data
-> npx dotenv sequelize db:migrate
-> npx dotenv sequelize db:seed:all
+```
+npx dotenv sequelize db:migrate
+px dotenv sequelize db:seed:all
+```
 
 5. Run the NPM development command to start both frontend server and backend server
-> npm start
+```
+npm start
+```
 
 ## Contact information
 
