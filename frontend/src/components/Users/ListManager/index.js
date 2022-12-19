@@ -6,10 +6,13 @@ import { useHistory } from "react-router-dom";
 import { fetchDeleteSpot } from "../../../store/spot";
 import "../Users.css"
 import { restoreUser } from "../../../store/session";
+import { deleteReview } from "../../../store/review";
 
 const ListManage=()=>{
     
     const dispatch = useDispatch();
+    const spotreviewsObj = useSelector(state=>state.review.spot);
+    // const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+spotId});
     // const currentUser = useSelector(state=>state.session.user);
     const spotsObj = useSelector(state=>state.spot.userspots);
     const spots = Object.values(spotsObj);
@@ -30,6 +33,12 @@ const ListManage=()=>{
     }
 
     const deleteEvents= (id)=>{
+        const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+id});
+        if(spotreviews.length>0){
+            spotreviews.forEach((el)=>{
+              dispatch(deleteReview(el.id))
+            })
+        }
         dispatch(fetchDeleteSpot(id))
     }
 
@@ -49,7 +58,6 @@ const ListManage=()=>{
                     <h3>{name}</h3>
                     <div>{address}</div>
                     <div className='manageaddress'>
-                       
                        <div>{`${city},${state},${country}`}</div>
                        <div><i className="fas fa-star" />{avgRating}</div>
                     </div>
