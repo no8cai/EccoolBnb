@@ -12,6 +12,7 @@
 * [Database Schema Design](https://github.com/no8cai/EccoolBnb/wiki/Database-Schema-Design)
 * [Backend API Documentation](https://github.com/no8cai/EccoolBnb/wiki/Backend-Documentation)
 * [Feature List](https://github.com/no8cai/EccoolBnb/wiki/Eccoolbnb-Features-List)
+* [Usage-Descriptions-of-Features](https://github.com/no8cai/EccoolBnb/wiki/Usage-descriptions-of-features)
 
 ## The technologies invoved
 
@@ -48,15 +49,15 @@ For more usage image guild please click [here](https://github.com/no8cai/EccoolB
 ## Roadmap
 
 ### Completed Fetures
-[x] The User Authentication
-[x] Properties listing
-[x] Reviews and rating
+- [x] The User Authentication
+- [x] Properties listing
+- [x] Reviews and rating
 
 ### future features
-[] Review images add-on
-[] Booking
-[] Google map link
-[] Messaging
+- [] Review images add-on
+- [] Booking
+- [] Google map link
+- [] Messaging
 
 ## Getting Started
 This is an instructions on setting up the project locally. To get a local copy up and running follow these simple example steps.
