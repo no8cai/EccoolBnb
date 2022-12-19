@@ -8,11 +8,11 @@
 
 ## EccoolBnb wiki documents
 
-* [Frontend-Store-Shape](https://github.com/no8cai/EccoolBnb/wiki/Frontend-Store-Shape)
+* [Frontend Store Shape](https://github.com/no8cai/EccoolBnb/wiki/Frontend-Store-Shape)
 * [Database Schema Design](https://github.com/no8cai/EccoolBnb/wiki/Database-Schema-Design)
 * [Backend API Documentation](https://github.com/no8cai/EccoolBnb/wiki/Backend-Documentation)
 * [Feature List](https://github.com/no8cai/EccoolBnb/wiki/Eccoolbnb-Features-List)
-* [Usage-Descriptions-of-Features](https://github.com/no8cai/EccoolBnb/wiki/Usage-descriptions-of-features)
+* [Usage Descriptions of Features](https://github.com/no8cai/EccoolBnb/wiki/Usage-descriptions-of-features)
 
 ## The technologies invoved
 
@@ -69,7 +69,7 @@ This is an instructions on setting up the project locally. To get a local copy u
 git clone https://github.com/no8cai/EccoolBnb.git
 ```
 
-2. Populate the .env file based on the example below:
+2. Populate the .env file based in the /backend directory on the example below:
 ```
 PORT=8000
 DB_FILE=db/dev.db
@@ -78,14 +78,14 @@ JWT_EXPIRES_IN=604800
 SCHEMA=«custom_schema_name_here»
 ```
 
-Please make your own good JWT secret key and schema name
+Please make your own JWT secret key and schema name
 
 3. Install NPM packages on both /fronted and /backend directory
 ```
 npm install
 ```
 
-4. Migrate and Seed the data
+4. Migrate and Seed the data for Sqlite3
 ```
 npx dotenv sequelize db:migrate
 px dotenv sequelize db:seed:all
@@ -99,6 +99,4 @@ npm start
 ## Contact information
 
 ERIC CHAI -no8cai@gmail.com
-
-
 
