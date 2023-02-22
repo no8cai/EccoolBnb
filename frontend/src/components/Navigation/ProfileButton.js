@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { deleteUserSpots } from "../../store/spot";
 import { deleteUserReviews } from "../../store/review";
+import { deleteUserBookings } from "../../store/booking";
 
 
 function ProfileButton({ user }) {
@@ -43,6 +44,7 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
     dispatch(deleteUserSpots());
     dispatch(deleteUserReviews());
+    dispatch(deleteUserBookings());
     closeMenu();
     history.push("/")
   };

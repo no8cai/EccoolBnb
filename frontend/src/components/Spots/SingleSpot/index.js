@@ -12,6 +12,7 @@ import OpenModalButton from '../../OpenModalButton';
 import { useModal } from '../../../context/Modal';
 import Footer from '../../Footer';
 import { fetchCreateBooking } from '../../../store/booking';
+import LoginFormModal from '../../LoginFormModal';
 
 const SingleSpot = () => {
 
@@ -78,6 +79,9 @@ const SingleSpot = () => {
 
     const closeMenu = () => setShowMenu(false);
     const avragedete =(input)=>input==="NaN"?"":input;
+    const loginEvents=()=>{
+      history.push(`/`)
+      }
 
 
     if(!singleSpot.SpotImages) return null
@@ -187,7 +191,14 @@ const SingleSpot = () => {
               required={true}
               value={endDate}/></div>        
              </div>
-          <button className='addreview ss-submit' type="submit">Reserve</button>
+          { !!currentUser && (<button className='addreview ss-submit' type="submit">Reserve</button>)}
+          { !currentUser && (
+            <OpenModalMenuItem
+              itemStyle={"addreview ss-submit"}
+              itemText="Log-In to Reserve"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />)}
           </form>
               <div className='ss-errorsec'>
                       {!!validationErrors.length && (
