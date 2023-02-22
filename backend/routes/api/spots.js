@@ -429,7 +429,8 @@ router.post('/:spotId/bookings',restoreUser, requireAuth,validateBooking,async (
         { model:Spot,
                 attributes: ['id','ownerId','address','city','state','country','lat','lng','name','price'],
                 include:[{model:SpotImage}]
-        }
+        },
+        { model:User,attributes: ['id','firstName','lastName']},
         ],
         where:{id: newBooking.id}
     });

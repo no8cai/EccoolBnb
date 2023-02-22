@@ -89,7 +89,9 @@ const deleteEvents= (id)=>{
             </div>
             </div>
             <div>
+                <NavLink to={`/spots/${Spot.id}`} className="links">
                 <img className="bm-image" src={Spot.previewImage}/>
+                </NavLink>
             </div>
             </div>
           ))}

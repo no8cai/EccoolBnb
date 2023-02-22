@@ -53,7 +53,13 @@ const SingleSpot = () => {
         endDate:endDate
       }
       const errors=[]
-      if(dayscalculation(startDate,endDate)<1){
+
+      if(Date.parse(startDate)<=Date.parse(todayDateStr)){
+        errors.push("start date can not be past or current date")
+        setValidationErrors(errors)
+        return
+      }
+      else if(dayscalculation(startDate,endDate)<1 && dayscalculation(startDate,endDate)>=0){
         errors.push("start date and end date can not be the same day")
         setValidationErrors(errors)
         return

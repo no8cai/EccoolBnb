@@ -22,10 +22,6 @@ const ReviewManage=()=>{
         dispatch(fetchUserReivews());
   }, [dispatch]); 
 
-//    const editEvents=(id)=>{
-//     history.push(`/editlisting/${id}`)
-//    }
-
     const deleteEvents= (id)=>{
     dispatch(fetchDeleteReview(id))
     }
@@ -41,7 +37,9 @@ const ReviewManage=()=>{
                 <div key={id} className='managebox'> 
                 <div className="managereinfo">
                     <div className="managerev">
+                    <NavLink to={`/spots/${spotId}`} className="links">
                     <h4>{`${Spot.address}`}</h4>
+                    </NavLink>
                     <div><i className="fas fa-star" />{stars}</div>
                     </div>
                     <div>{review}</div> 

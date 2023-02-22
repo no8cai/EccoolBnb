@@ -22,6 +22,12 @@ const BookingForm=({id,start,end})=>{
     const [validationErrors, setValidationErrors] = useState([]);
 
 
+    
+    const dayscalculation=(start,end)=>{
+        let sectime=(Date.parse(end)-Date.parse(start))/1000
+        return Math.floor(sectime/86400)
+    }
+
       useEffect(() => {
       if (!startDate&&!endDate) {
         setValidationErrors([]);
@@ -30,11 +36,13 @@ const BookingForm=({id,start,end})=>{
 
       const errors =[];
       if(startDate.length<=0){errors.push("Listing's start date is required");}
+      else if(Date.parse(startDate)<=Date.parse(todayDateStr)){errors.push("start date can not be past or current date")}
       if(endDate.length<=0){errors.push("Listing's end date is required");}
+      else if(Date.parse(startDate)>Date.parse(endDate)){errors.push("start date should before end date")}
+      else if(dayscalculation(startDate,endDate)<1 && dayscalculation(startDate,endDate)>=0){errors.push("start date and end date can not be the same day")}
       setValidationErrors(errors);
 
     }, [startDate,endDate]);
-
 
 
 
@@ -59,7 +67,6 @@ const BookingForm=({id,start,end})=>{
             errors.push(errobject.message)
             setValidationErrors(errors)
           });
-   
       };
 
     return(

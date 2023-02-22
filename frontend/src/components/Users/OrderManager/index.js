@@ -17,6 +17,8 @@ const OrderManage=()=>{
     const currentUser = useSelector(state=>state.session.user);
     const singleSpot = useSelector(state=>state.spot.singlespot);
     const bookings = Object.values(bookingsObj).filter(el=>el.spotId==spotId);
+    const todayDate = new Date()
+    const todayDateStr = todayDate.toJSON().slice(0,10)
 
     useEffect(() => {
         dispatch(restoreUser())
@@ -39,7 +41,9 @@ const OrderManage=()=>{
         <h1>Welcome to order manager</h1>
         <div className='bm-managebox'>
             <div>
+              <NavLink to={`/spots/${singleSpot.id}`} className="links">
               <img src={singleSpot.SpotImages[0].url} className="om-image"/>
+              </NavLink>
             </div>
             <div className="om-rightsec">
               <div className="om-righttop">
@@ -49,7 +53,7 @@ const OrderManage=()=>{
               </div>
               <div className="om-rightbottom">
                 <div><div><i className="fas fa-star" />{avragedete(singleSpot.avgRating)}<span>{` ${singleSpot.numReviews} reviews`}</span></div></div>
-                <div>{singleSpot.description}</div>
+                <div className="om-description">{singleSpot.description}</div>
               </div>
             </div>
         </div>
@@ -74,7 +78,8 @@ const OrderManage=()=>{
               <div className="productlist-item">{startDate}</div>
               <div className="productlist-item">{endDate}</div>
               <div className="productlist-item">
-               <div className='addreview om-button' onClick={()=>{deleteEvents(id)}}>Cancel</div>
+              {(Date.parse(todayDateStr)<Date.parse(startDate))&&(<div className='addreview om-button' onClick={()=>{deleteEvents(id)}}>Cancel</div>)}
+              {(Date.parse(todayDateStr)>=Date.parse(startDate))&&(<div>Order Completed</div>)}
               </div>
              </div>
              ))}
