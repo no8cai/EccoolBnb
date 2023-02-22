@@ -13,7 +13,8 @@
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "faker": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,5 +40,5 @@
   "devDependencies": {
     "redux-logger": "^3.0.6"
   },
-  "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8000/"
 }

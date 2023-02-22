@@ -58,9 +58,10 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <div className="topleftmenulist top">{user.username}</div>
-            <div className="topleftmenulist top">{user.firstName} {user.lastName}</div>
-            <div className="topleftmenulist top">{user.email}</div>
+            <div className="topleftmenulist">{user.username}</div>
+            <div className="topleftmenulist">{user.firstName} {user.lastName}</div>
+            <div className="topleftmenulist">{user.email}</div>
+            <div className="topleftmenulist live"><NavLink to={`/hosting/booking`} className="topleftlink top">My Trips</NavLink></div>
             <div className="topleftmenulist live"><NavLink to={`/hosting`} className="topleftlink top">Manage Listings</NavLink></div>
             <div className="topleftmenulist live"><NavLink to={`/hosting/reviews`} className="topleftlink top">Manage Reviews</NavLink></div>
             <div onClick={logout} className="topleftmenulist logout live">Log Out</div>

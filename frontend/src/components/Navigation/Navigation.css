@@ -7,10 +7,10 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgb(0, 0, 0,7%);
-    padding-right: 5vw;
-    padding-left: 5vw;
-    padding-top: 2vh;
-    padding-bottom: 10vh;
+    padding-right: 6.5vw;
+    padding-left: 6.5vw;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 .logo {
@@ -20,7 +20,7 @@
 .toplogo {
     color: #ff385c;
     text-decoration:none;
-    font-family: 'Dancing Script';
+    font-family: 'Poppins';
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -46,7 +46,7 @@
     /* display: none; */
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     right: 5%;
     border-radius: 10px;
@@ -97,4 +97,49 @@
 
 .out:hover{
     background-color: rgb(128, 128, 128,20%);
+}
+
+
+
+
+.search-container{
+    margin-right: 10px;
+    margin-right: 10px;
+    border: 1px rgb(0, 0, 0,0.2) solid;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+.form-input input{
+    width: 15vw;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+.form-input button{
+    background-color: #ff385c;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.form-input{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.fa-search{
+    width: 20px;
+    color: white;
+    font-size: 15px;
 }

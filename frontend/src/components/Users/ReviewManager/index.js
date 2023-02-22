@@ -10,7 +10,7 @@ const ReviewManage=()=>{
 
 
     const dispatch = useDispatch();
-    // const currentUser = useSelector(state=>state.session.user);
+    const currentUser = useSelector(state=>state.session.user);
     const reviewsObj = useSelector(state=>state.review.user);
     const reviews = Object.values(reviewsObj);
     const history=useHistory();  
@@ -30,17 +30,18 @@ const ReviewManage=()=>{
     dispatch(fetchDeleteReview(id))
     }
     
+    if((!currentUser)||(!reviewsObj)) return null
 
     return(
-            <div>
+            <div className="lm-section">
             <h1 className="revbar">Welcome to Management Center</h1>
             <h3>Your Reviews</h3>
             <div className="managelist">
-            {reviews.map(({ id, stars, review,spotId}) => (
+            {reviews.slice(0).reverse().map(({ id, stars, review,spotId,Spot}) => (
                 <div key={id} className='managebox'> 
                 <div className="managereinfo">
                     <div className="managerev">
-                    <h4>{`Location ${spotId}`}</h4>
+                    <h4>{`${Spot.address}`}</h4>
                     <div><i className="fas fa-star" />{stars}</div>
                     </div>
                     <div>{review}</div> 

@@ -85,7 +85,8 @@ router.put('/:bookingId',restoreUser,requireAuth,validateBooking,async (req, res
              {startDate:{[Op.lte]:endDate}},
              {endDate:{[Op.gte]:startDate}}
             ],
-            spotId:oneBooking.spotId
+            spotId:oneBooking.spotId,
+            id:{[Op.ne]:oneBooking.id}
         }
     })
 

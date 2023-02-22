@@ -6,6 +6,9 @@ import CreateSpot from '../Spots/CreateSpot';
 import ReviewManage from './ReviewManager';
 import CreateSpotReview from '../Reviews/CreateSpotReview';
 import AddSpotImage from '../Images/SpotImage/AddSpotImage';
+import OrderManage from './OrderManager';
+import BookingManage from './BookingManager';
+import Footer from '../Footer';
 import "./Users.css"
 
 const ManageCenter=()=>{
@@ -13,6 +16,12 @@ const ManageCenter=()=>{
     return(
         <div className='usermanage'>
         <Switch>
+          <Route exact path={'/hosting/orders/:spotId'}>
+          <OrderManage/>
+          </Route>
+          <Route exact path={'/hosting/booking'}>
+          <BookingManage/>
+          </Route>
           {/* <Route exact path={'/addspotimage'}>
           <AddSpotImage/>
           </Route> */}
@@ -32,6 +41,7 @@ const ManageCenter=()=>{
           <EditSpot/>
           </Route>
         </Switch>
+        <Footer/>
         </div>    
     )
 }

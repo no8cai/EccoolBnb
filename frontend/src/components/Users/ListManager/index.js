@@ -13,13 +13,13 @@ const ListManage=()=>{
     const dispatch = useDispatch();
     const spotreviewsObj = useSelector(state=>state.review.spot);
     // const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+spotId});
-    // const currentUser = useSelector(state=>state.session.user);
+    const currentUser = useSelector(state=>state.session.user);
     const spotsObj = useSelector(state=>state.spot.userspots);
     const spots = Object.values(spotsObj);
     const history=useHistory();  
 
     useEffect(() => {
-        //   dispatch(restoreUser())
+          dispatch(restoreUser())
           dispatch(fetchUserSpots());
     }, [dispatch]); 
     
@@ -32,6 +32,11 @@ const ListManage=()=>{
         history.push(`/editlisting/${id}`)
     }
 
+    const orderEvents=(id)=>{
+        history.push(`/hosting/orders/${id}`)
+    }
+
+
     const deleteEvents= (id)=>{
         const spotreviews=Object.values(spotreviewsObj).filter(review=>{return review.spotId===+id});
         if(spotreviews.length>0){
@@ -42,9 +47,13 @@ const ListManage=()=>{
         dispatch(fetchDeleteSpot(id))
     }
 
+    const avragedete =(input)=>input==="NaN"?"":input;
+
+    if(!currentUser) return null
+
 
     return(
-            <div>
+            <div className="lm-section">
             <div className="topbar">
             <h1>Welcome to Management Center</h1>
             <button onClick={()=>createEvents()} className='listbutton'>List your home</button>
@@ -59,7 +68,7 @@ const ListManage=()=>{
                     <div>{address}</div>
                     <div className='manageaddress'>
                        <div>{`${city},${state},${country}`}</div>
-                       <div><i className="fas fa-star" />{avgRating}</div>
+                       <div><i className="fas fa-star" />{avragedete(avgRating)}</div>
                     </div>
                     <div>
                        {`$${parseFloat(price).toFixed(2)} night`}
@@ -69,6 +78,7 @@ const ListManage=()=>{
                 <div className="button-section">
                     <button onClick={()=>editEvents(id)} className="buttons"><i className="fa-regular fa-pen-to-square" />Edit</button>
                     <button onClick={()=>deleteEvents(id)} className='buttons'><i className="fa-solid fa-trash-can" />Delete</button>
+                    <button onClick={()=>orderEvents(id)} className='buttons'><i className="fa-solid fa-list" />Spot Order list</button>
                 </div>
                 </div>
               ))}

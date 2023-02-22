@@ -25,3 +25,8 @@ textarea{
 #modal-content{
     border-radius: 10px;
  }
+
+#do-not-interact:hover {
+    cursor: not-allowed;
+    text-decoration: none;
+}

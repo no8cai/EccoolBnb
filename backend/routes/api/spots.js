@@ -27,7 +27,7 @@ minPrice = parseFloat(minPrice);
 //setup query parameters
 let pagination = {}
 if(!page) page = 1
-if(!size) size = 20
+if(!size) size = 30
 pagination.limit = size
 pagination.offset = size * (page - 1)
 
@@ -173,7 +173,7 @@ router.get('/:spotId/bookings',restoreUser,requireAuth,async (req, res,next) => 
     }
 
     if(user.id===currentSpot.ownerId){
-        const bookings=await Booking.findAll({
+        const Bookings=await Booking.findAll({
             include: [
             { model:User,attributes: ['id','firstName','lastName']},
             ],
@@ -181,15 +181,15 @@ router.get('/:spotId/bookings',restoreUser,requireAuth,async (req, res,next) => 
   
         });
 
-        res.json({bookings})
+        res.json({Bookings})
         return
      }
-        const bookings=await Booking.findAll({
+        const Bookings=await Booking.findAll({
 
             where:{spotId:req.params.spotId},
             attributes: ['spotId','startDate','endDate']
         });
-        res.json({bookings})
+        res.json({Bookings})
 
 });
 
@@ -423,8 +423,28 @@ router.post('/:spotId/bookings',restoreUser, requireAuth,validateBooking,async (
         endDate,
         userId:user.id
     })
+    
+    let createdbooking=await Booking.findOne({
+        include: [
+        { model:Spot,
+                attributes: ['id','ownerId','address','city','state','country','lat','lng','name','price'],
+                include:[{model:SpotImage}]
+        }
+        ],
+        where:{id: newBooking.id}
+    });
+    
+    resultbooking=createdbooking.toJSON()
 
-    res.json(newBooking)
+    resultbooking.Spot.SpotImages.forEach(image=>{
+        if(image.preview===true){
+            resultbooking.Spot.previewImage=image.url
+        }
+    })
+    if(!resultbooking.Spot.SpotImages.length){ resultbooking.Spot.previewImage=""}
+    delete resultbooking.Spot.SpotImages
+
+    res.json(resultbooking)
   }
 );
 

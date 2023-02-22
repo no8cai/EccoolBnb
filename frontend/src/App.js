@@ -9,6 +9,9 @@ import Spots from "./components/Spots";
 import ManageCenter from "./components/Users";
 import './index.css'
 import ErrornotFind from "./components/Errors/Error404";
+import LandingFooter from "./components/Footer/LandingFooter";
+import SingleSpot from "./components/Spots/SingleSpot";
+import Searchpage from "./components/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,8 +28,14 @@ function App() {
     <div className="rootchild">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-      <Switch>
-        <Route exact path={["/","/spots/:spotId"]}>
+        <Switch>
+        <Route path='/search/:searchItem' >
+        <Searchpage />
+        </Route>
+        <Route path='/spots/:spotId'>
+            <SingleSpot/>
+        </Route>
+        <Route exact path={"/"}>
         <Spots/>
         </Route>
         <Route path={["/hosting", "/createlisting","/editlisting/:spotId","/hosting/reviews","/createreview"]}>
@@ -38,6 +47,7 @@ function App() {
         </Switch>
         )}
     </div>
+
   );
 }
 

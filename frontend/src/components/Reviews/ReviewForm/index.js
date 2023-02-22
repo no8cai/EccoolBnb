@@ -11,7 +11,7 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
     let initReview,initStars;
     const history=useHistory()
     const dispatch = useDispatch();
-    const {closeModal } = useModal();
+    const {closeModal} = useModal();
 
     if(formType==="Edit Review"){
         initReview=theReview.review;
