@@ -36,6 +36,13 @@ const SingleSpot = () => {
     const history=useHistory(); 
     
 
+    let totalreview = 0
+
+    spotreviews.forEach(el=>{
+        totalreview += el.stars
+    }) 
+
+
     useEffect(() => {
       dispatch(fetchOneSpot(spotId))
       dispatch(fetchSpotReivews(spotId))
@@ -82,6 +89,28 @@ const SingleSpot = () => {
     const loginEvents=()=>{
       history.push(`/`)
       }
+    
+      function formatPriceWithCommas(price) {
+        const priceStr = price.toString();
+        let [wholeNum, decimal] = priceStr.split('.');
+        if (!decimal) {
+          decimal = '00';
+        } else if (decimal.length === 1) {
+          decimal += '0';
+        }
+    
+        let numstr=wholeNum.toString().split("").reverse()
+        let newstr=[]
+        for(let i=0;i<numstr.length;i++){
+           newstr.push(numstr[i])
+           if((i+1)%3==0&&i!==numstr.length-1){
+             newstr.push(",")
+           }
+        }
+        let newresult= newstr.reverse().join("")
+        return newresult + '.' + decimal;
+      }
+
 
 
     if(!singleSpot.SpotImages) return null
@@ -92,10 +121,10 @@ const SingleSpot = () => {
       <div className='spotpage'>
         <h1>{singleSpot.name}</h1>
         <div className='spotinfo'>
-        <div><i className="fas fa-star" />{avragedete(singleSpot.avgRating)}</div>
+        <div><i className="fas fa-star" />{(totalreview/spotreviews.length).toFixed(1)}</div>
         <div>
           <OpenModalMenuItem
-               itemText={`${singleSpot.numReviews} reviews`} 
+               itemText={`${spotreviews.length} reviews`} 
                onItemClick={closeMenu}
                modalComponent={<Reviews spotreviews={spotreviews}/>}
                itemStyle="reviewlink"
@@ -110,19 +139,19 @@ const SingleSpot = () => {
               onError={e => { e.currentTarget.src = "http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"; }}
                />
              ))} */}
-              <img className={`siglespot-image image0`} src={singleSpot.SpotImages[4]?singleSpot.SpotImages[4].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"}
+              <img className={`siglespot-image image0`} src={singleSpot.SpotImages[0]?singleSpot.SpotImages[0].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"}
               onError={e => { e.currentTarget.src = "http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"; }}
                />
-              <img className={`siglespot-image image1`} src={singleSpot.SpotImages[3]?singleSpot.SpotImages[3].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg" }
+              <img className={`siglespot-image image1`} src={singleSpot.SpotImages[1]?singleSpot.SpotImages[1].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg" }
               onError={e => { e.currentTarget.src = "http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"; }}
                />
               <img className={`siglespot-image image2`} src={singleSpot.SpotImages[2]?singleSpot.SpotImages[2].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg" }
               onError={e => { e.currentTarget.src = "http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"; }}
                />
-              <img className={`siglespot-image image3`} src={singleSpot.SpotImages[1]?singleSpot.SpotImages[1].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"}
+              <img className={`siglespot-image image3`} src={singleSpot.SpotImages[3]?singleSpot.SpotImages[3].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"}
               onError={e => { e.currentTarget.src = "http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"; }}
                />
-              <img className={`siglespot-image image4`} src={singleSpot.SpotImages[0]?singleSpot.SpotImages[0].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"}
+              <img className={`siglespot-image image4`} src={singleSpot.SpotImages[4]?singleSpot.SpotImages[4].url:"http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"}
               onError={e => { e.currentTarget.src = "http://app-bucket-eric001.s3.amazonaws.com/9092828bb3cf4575bfa7682d8e4ba73a.jpg"; }}
                />                         
         </div>
@@ -142,12 +171,12 @@ const SingleSpot = () => {
         </div>
         <div className='info-right'>
           <div className='right-top'>
-          <div className='right-left'><h3>{`$${parseFloat(singleSpot.price).toFixed(2)}`}</h3><div>night</div></div> 
-          <div className='right-right'><i className="fas fa-star" /><div>{avragedete(singleSpot.avgRating)}</div>
+          <div className='right-left'><h3>{`$${formatPriceWithCommas(parseFloat(singleSpot.price).toFixed(2))}`}</h3><div>night</div></div> 
+          <div className='right-right'><i className="fas fa-star" /><div>{(totalreview/spotreviews.length).toFixed(1)}</div>
           <span className='ss-midpot'>{"·"}</span>
           <span>
           <OpenModalMenuItem
-               itemText={`${singleSpot.numReviews} reviews`} 
+               itemText={`${spotreviews.length} reviews`} 
                onItemClick={closeMenu}
                modalComponent={<Reviews spotreviews={spotreviews}/>}
                itemStyle="reviewlink"
@@ -179,7 +208,7 @@ const SingleSpot = () => {
              
              <div div className='ss-dateitem'>
              <label className='ss-datelabel'>
-             CHECKOUT
+             CHECK-OUT
              </label>
              <input
               className='ss-input'
@@ -215,28 +244,28 @@ const SingleSpot = () => {
           { (Date.parse(startDate)<Date.parse(endDate)) &&(<div className='ss-pricesec'>
                 <div className='ss-wontcharge'>You won't be charged yet</div>
                 <div className='ss-priceitem'>
-                 <div className='ss-priceheader'>{`$${singleSpot.price}x${dayscalculation(startDate,endDate)} night${dayscalculation(startDate,endDate)>1?"s":""}`}</div>
-                 <div>{`$${(dayscalculation(startDate,endDate)*singleSpot.price).toFixed(2)}`}</div>
+                 <div className='ss-priceheader'>{`$${formatPriceWithCommas(singleSpot.price)}x${dayscalculation(startDate,endDate)} night${dayscalculation(startDate,endDate)>1?"s":""}`}</div>
+                 <div>{`$${formatPriceWithCommas((dayscalculation(startDate,endDate)*singleSpot.price).toFixed(2))}`}</div>
                  </div>
                 <div className='ss-priceitem'>
                   <div className='ss-priceheader'>Clening fee</div>
-                  <div>{`$${(dayscalculation(startDate,endDate)*singleSpot.price*0.07).toFixed(2)}`}</div>
+                  <div>{`$${formatPriceWithCommas((dayscalculation(startDate,endDate)*singleSpot.price*0.07).toFixed(2))}`}</div>
                 </div>
                 <div className='ss-priceitem'>
                   <div className='ss-priceheader'>Service fee</div>
-                  <div>{`$${(dayscalculation(startDate,endDate)*singleSpot.price*0.15).toFixed(2)}`}</div>
+                  <div>{`$${formatPriceWithCommas((dayscalculation(startDate,endDate)*singleSpot.price*0.15).toFixed(2))}`}</div>
                   </div>
                 <div className='ss-priceitem ss-totalsec'>
                   <div className='ss-totalprice'>Total price</div>
-                  <div className='ss-totalprice'>{`$${(dayscalculation(startDate,endDate)*singleSpot.price*1.22).toFixed(2)}`}</div>
+                  <div className='ss-totalprice'>{`$${formatPriceWithCommas((dayscalculation(startDate,endDate)*singleSpot.price*1.22).toFixed(2))}`}</div>
                 </div>
                </div>)}
         </div>
         </div>
         <div className='reviewfooter'>
         <div className='reviewbar'>
-           <div><i className="fas fa-star" />{avragedete(singleSpot.avgRating)}</div>
-           <div>{`· ${singleSpot.numReviews} reviews ·`}</div>
+           <div><i className="fas fa-star" />{(totalreview/spotreviews.length).toFixed(1)}</div>
+           <div>{`· ${spotreviews.length} reviews ·`}</div>
            { !!currentUser && (<div>Leave a review ?</div>)}
            <OpenModalButton
                buttonDisable={true}

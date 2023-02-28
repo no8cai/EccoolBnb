@@ -60,7 +60,7 @@ const ReviewForm=({theReview,formType,spotId,closeMenu})=>{
         if(formType==="Create Review"){
           dispatch(fetchCreateReview(spotId,tempReview))
           .then(closeModal)
-          .then(()=>history.push(`/`))
+          .then(()=>history.push(`/spots/${spotId}`))
           .catch(async (err)=>{
             const  errobject=await err.json();
             errors.push(errobject.message)

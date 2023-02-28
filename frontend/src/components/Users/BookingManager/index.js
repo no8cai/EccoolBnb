@@ -42,6 +42,27 @@ const deleteEvents= (id)=>{
         return Math.floor(sectime/86400)
     }
 
+    function formatPriceWithCommas(price) {
+        const priceStr = price.toString();
+        let [wholeNum, decimal] = priceStr.split('.');
+        if (!decimal) {
+          decimal = '00';
+        } else if (decimal.length === 1) {
+          decimal += '0';
+        }
+    
+        let numstr=wholeNum.toString().split("").reverse()
+        let newstr=[]
+        for(let i=0;i<numstr.length;i++){
+           newstr.push(numstr[i])
+           if((i+1)%3==0&&i!==numstr.length-1){
+             newstr.push(",")
+           }
+        }
+        let newresult= newstr.reverse().join("")
+        return newresult + '.' + decimal;
+      }
+
 
     if((!currentUser)||(!bookingsObj)) return null
 
@@ -63,10 +84,10 @@ const deleteEvents= (id)=>{
                 <div>{`Check-In: ${startDate}`}</div>
                 <div>{`Check-Out: ${endDate}`}</div>
                 <div>{`Number of days to stay: ${dayscalculation(startDate,endDate)} days`}</div>
-                <div>{`Base price: $${(dayscalculation(startDate,endDate)*Spot.price).toFixed(2)}`}</div>
-                <div>{`Clean price: $${(dayscalculation(startDate,endDate)*Spot.price*0.07).toFixed(2)}`}</div>
-                <div>{`Service price: $${(dayscalculation(startDate,endDate)*Spot.price*0.15).toFixed(2)}`}</div>
-                <div>{`Total price: $${(dayscalculation(startDate,endDate)*Spot.price*1.22).toFixed(2)}`}</div>
+                <div>{`Base price: $${formatPriceWithCommas((dayscalculation(startDate,endDate)*Spot.price).toFixed(2))}`}</div>
+                <div>{`Clean price: $${formatPriceWithCommas((dayscalculation(startDate,endDate)*Spot.price*0.07).toFixed(2))}`}</div>
+                <div>{`Service price: $${formatPriceWithCommas((dayscalculation(startDate,endDate)*Spot.price*0.15).toFixed(2))}`}</div>
+                <div>{`Total price: $${formatPriceWithCommas((dayscalculation(startDate,endDate)*Spot.price*1.22).toFixed(2))}`}</div>
                 </div>
                 <div className="bm-buttonsec">
                     <div className="bm-buttonitem">

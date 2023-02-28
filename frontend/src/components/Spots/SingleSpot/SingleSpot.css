@@ -64,6 +64,8 @@
 .info-right{
    display: flex;
    flex-direction: column;
+   width: 35%;
+   margin-left: 20px;
 }
 
 .addreview{
@@ -167,6 +169,7 @@
 .ss-dateitem{
     display: flex;
     flex-direction: column;
+    width: 120px;
 }
 
 .ss-datelabel{

@@ -86,7 +86,7 @@ module.exports = {
         {
          ownerId: 1,
          address: '22001 Grand Cove Court',
-         city:'katy',
+         city:'Katy',
          state:'Texas',
          country:'United States',
          lat: 29.71799,
@@ -98,7 +98,7 @@ module.exports = {
         {
           ownerId: 2,
           address: '12302 Seven Lake',
-          city:'The new york city',
+          city:'New York City',
           state:'New York',
           country:'United States',
           lat: 40.788709,

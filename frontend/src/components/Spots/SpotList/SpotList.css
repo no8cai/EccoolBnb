@@ -4,22 +4,23 @@
 }
 
 .Landing-sec{
-    padding-left: 6.5vw;
-    padding-right: 6.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-left: 6.5vw;
+    padding-right: 6.5vw; */
     padding-top: 20px;
     padding-bottom: 40px;
 }
 
 .listitem{
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin: auto;
-    justify-content: flex-start;
+    justify-content: center;
     gap:30px;
-    align-content: space-between;
-    text-decoration:none;
-
+   
 }
 div.listitem a{
     color: black;
@@ -29,7 +30,7 @@ div.listitem a{
 .item{
     color:white;
     gap:50px;
-    width: 321px;
+    width: 322px;
     border-radius: 10px;
 }
 
@@ -49,4 +50,8 @@ div.itemimg img{
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.listitem > i {
+    width: 322px;
 }

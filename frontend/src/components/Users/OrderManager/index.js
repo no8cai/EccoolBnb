@@ -38,7 +38,7 @@ const OrderManage=()=>{
 
     return (
         <div className="lm-section">
-        <h1>Welcome to order manager</h1>
+        <h1>Manage your orders</h1>
         <div className='bm-managebox'>
             <div>
               <NavLink to={`/spots/${singleSpot.id}`} className="links">

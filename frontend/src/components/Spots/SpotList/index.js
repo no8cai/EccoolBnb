@@ -22,13 +22,34 @@ const SpotList = () => {
   
   const avragedete =(input)=>input==="NaN"?"":input;
   
+  function formatPriceWithCommas(price) {
+    const priceStr = price.toString();
+    let [wholeNum, decimal] = priceStr.split('.');
+    if (!decimal) {
+      decimal = '00';
+    } else if (decimal.length === 1) {
+      decimal += '0';
+    }
+
+    let numstr=wholeNum.toString().split("").reverse()
+    let newstr=[]
+    for(let i=0;i<numstr.length;i++){
+       newstr.push(numstr[i])
+       if((i+1)%3==0&&i!==numstr.length-1){
+         newstr.push(",")
+       }
+    }
+    let newresult= newstr.reverse().join("")
+    return newresult + '.' + decimal;
+  }
+  
   if(!spotsObj) return null
 
     return (
       <>
       <div className='Landing-sec'>
         <div className='listitem'>
-          {spots.map(({ id, city,country,price,avgRating,previewImage }) => (
+          {spots.map(({ id, city,state,country,price,avgRating,previewImage }) => (
             <div className='item' key={id}><NavLink to={`/spots/${id}`}>
                 <div className='itemimg'>
                 <img src={previewImage} className="image"
@@ -36,14 +57,15 @@ const SpotList = () => {
                   />
                   </div>
                 <div className='address'>
-                   <div>{`${city},${country}`}</div>
+                   <div>{`${city}, ${state}, ${country}`}</div>
                    <div><i className="fas fa-star" />{avragedete(avgRating)}</div>
                 </div>
                 <div className='price'>
-                   {`$${parseFloat(price).toFixed(2)} night`}
+                   {`$${formatPriceWithCommas(parseFloat(price).toFixed(2))} night`}
                 </div>
             </NavLink></div>
           ))}
+          <i></i><i></i><i></i><i></i><i></i>
         </div>
         
       </div>
