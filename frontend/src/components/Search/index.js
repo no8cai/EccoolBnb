@@ -56,7 +56,7 @@ const Searchpage=()=>{
 
       return (
         <>
-        <div className='Landing-sec'>
+        <div className='Landing-sec serc'>
           <div className='listitem'>
             {spots.map(({ id, city,country,price,avgRating,previewImage }) => (
               <div className='item' key={id}><NavLink to={`/spots/${id}`}>
@@ -74,8 +74,8 @@ const Searchpage=()=>{
                   </div>
               </NavLink></div>
             ))}
-          </div>
-          
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>  
         </div>
         <LandingFooter/>
         </>

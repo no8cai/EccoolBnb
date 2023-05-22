@@ -55,3 +55,7 @@ div.itemimg img{
 .listitem > i {
     width: 322px;
 }
+
+.serc{
+    min-height: 75vh;
+}
